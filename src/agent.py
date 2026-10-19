@@ -111,9 +111,11 @@ def llm_planner(report, tried, history):
 def plan_next(report, tried, history, use_llm=True):
     if use_llm:
         a = llm_planner(report, tried, history)
-        if a:
+        if a and a not in tried:
             print(f"  [planner: LLM/{OLLAMA_MODEL}] -> {a}")
             return a
+        elif a:
+            print(f"  [planner: LLM repeated '{a}'; consulting rules]")
     a = rule_planner(report, tried)
     print(f"  [planner: rules] -> {a}")
     return a
@@ -183,8 +185,8 @@ def run_agent(data_file, cif_file, instprm, outdir, label="run", use_llm=True):
             gpx = G2sc.G2Project(gpxfile=gpx_path)
             hist, phase = gpx.histogram(0), gpx.phase(0)
         tried.append(action)
-        history.append({"action": action, "rwp_before": before, "rwp_after": after,
-                        "accepted": improved})
+        history.append({"action": action, "rwp_before": float(before), "rwp_after": float(after),
+                        "accepted": bool(improved)})
         log["remediations"] = history
 
     gpx.save()
