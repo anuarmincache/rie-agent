@@ -3,7 +3,7 @@
 Development plan for rie-agent, organized in sprints.
 Golden rule: **deterministic pipeline first, LLM agent last**.
 
-## Sprint 0 - Headless staged refinement (no AI)  <- CURRENT
+## Sprint 0 - Headless staged refinement (no AI)  [DONE]
 
 Scripted Rietveld refinement via GSASIIscriptable:
 - Input: diffraction data (.xye/.gss), phase .cif, instrument .instprm
@@ -15,7 +15,7 @@ Scripted Rietveld refinement via GSASIIscriptable:
 Done when: one command refines a sample end-to-end and writes a
 stage-by-stage quality report.
 
-## Sprint 1 - Deterministic validators
+## Sprint 1 - Deterministic validators  [DONE]
 
 Pure functions: refinement state -> OK/FAIL + reason.
 - Rwp/GOF thresholds and trend (worsening = fail)
@@ -24,14 +24,20 @@ Pure functions: refinement state -> OK/FAIL + reason.
 - Divergence detection (covariance, parameter shifts vs esd)
 - Phase-specific checks (Bi-Fe-O secondary phases: Bi25FeO40, Bi2Fe4O9)
 
-## Sprint 2 - LLM agent
+## Sprint 2 - LLM agent  [DONE]
 
 Orchestrator (LangGraph) deciding the next stage given state + trajectory,
 with automatic rollback on validator failure. LLM for diagnosis/planning
 only - never for numeric decisions. Local models via Ollama by default
 (open source); paid API as an optional user-configured backend.
 
-## Sprint 3 - Benchmarks
+## Sprint 2.5 - Secondary phase hunter  [DONE]
+- Bragg-masked residual peak detection
+- Isolated scale-only phase trials (input .gpx immutable)
+- Deterministic acceptance: Rwp gain >= 0.20, positive scale, diverged rejected
+- Validated on Nd2.5 sample: library phases correctly rejected
+
+## Sprint 3 - Benchmarks  <- CURRENT
 
 - Full battery on Bi1-xNdxFeO3 series (multiple x)
 - Public reference datasets

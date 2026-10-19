@@ -48,3 +48,22 @@ Decision: the agent ships with Ollama (local open-weight models) as the
 default backend - zero cost, fully reproducible. A paid API
 (Anthropic/OpenAI) can be configured by the user via environment
 variables, but is never required.
+
+## ADR-007: Trial isolation and distrust of stored Rwp
+
+**Context.** While building the phase hunter (Sprint 2.5), GSAS-II's
+`add_phase()` silently saved the project back to the *input* .gpx file,
+contaminating the reference refinement with a candidate phase. The stored
+Rwp in `Covariance/Rvals` remained stale (10.49) and masked the
+contamination, so every downstream trial inherited a phantom phase.
+
+**Decision.** (1) Every phase trial runs on a file copy; the input .gpx is
+never opened for writing. (2) Acceptance metrics are recomputed from the
+observed/calculated pattern arrays (`rwp_from_data`), never read from
+stored Rvals after a trial. (3) Backups (`.good`) are made before any
+hunter run. (4) Diverged trials (Rwp > 10x base) are flagged "diverged"
+and rejected.
+
+**Consequences.** Slightly more disk I/O per trial; in exchange, the
+agent's decisions are auditable and the reference state is provably
+immutable during hunting.
