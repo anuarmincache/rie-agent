@@ -29,3 +29,10 @@ encoded in code. The agent's remediation table should grow from this log.
 - Symptom: |corr| > 0.90 for V-W, X-Y, SH/L-Zero; SVD singularity; no convergence.
 - Fix: freeze V, Y, SH/L; keep U, W, X, Zero free.
 - Encoded in: pending promotion to agent.py remediation table.
+
+## 2026-10-22 - Polar axis origin degeneracy (R3c)
+- Symptom: soft SVD singularity on z-shifts; R3c is polar, origin along c is
+  not fixed by symmetry, so refining all z coordinates is degenerate.
+- Fix: freeze Bi1 coordinates (flags "U"), pinning the origin at Bi z = 0.
+- Result: VERDICT OK, Rwp 10.48, GOF 1.89, SVD0=0, max shift/esd 0.26.
+- Encoded in: pending promotion to agent.py remediation table.
