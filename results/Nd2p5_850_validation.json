@@ -1,0 +1,65 @@
+{
+  "ok": false,
+  "checks": [
+    {
+      "check": "rwp_present",
+      "status": "OK",
+      "detail": "Rwp=13.94307015727069"
+    },
+    {
+      "check": "gof_reasonable",
+      "status": "OK",
+      "detail": "GOF=2.51 (target <= 3.0)"
+    },
+    {
+      "check": "uiso_Bi1",
+      "status": "OK",
+      "detail": "Uiso=0.00870 A^2 (range 0.0001-0.05)"
+    },
+    {
+      "check": "uiso_Fe1",
+      "status": "OK",
+      "detail": "Uiso=0.00064 A^2 (range 0.0001-0.05)"
+    },
+    {
+      "check": "uiso_O1",
+      "status": "OK",
+      "detail": "Uiso=0.00029 A^2 (range 0.0001-0.05)"
+    },
+    {
+      "check": "occ_Bi1",
+      "status": "OK",
+      "detail": "occ=1.0000"
+    },
+    {
+      "check": "occ_Fe1",
+      "status": "OK",
+      "detail": "occ=1.0000"
+    },
+    {
+      "check": "occ_O1",
+      "status": "OK",
+      "detail": "occ=1.0000"
+    },
+    {
+      "check": "param_correlations",
+      "status": "FAIL",
+      "detail": ":0:V x :0:W = 0.91; :0:X x :0:Y = 0.93"
+    },
+    {
+      "check": "converged",
+      "status": "OK",
+      "detail": "converged=True, max shift/esd=5.65514942417157"
+    },
+    {
+      "check": "svd_free",
+      "status": "FAIL",
+      "detail": "SVD singularities=1"
+    },
+    {
+      "check": "rwp_not_worse",
+      "status": "OK",
+      "detail": "Rwp 14.21 -> 13.94"
+    }
+  ]
+}

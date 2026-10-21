@@ -1,0 +1,92 @@
+{
+  "input_gpx": "results/agent_llm.gpx",
+  "unexplained_peaks": [
+    [
+      19.26,
+      3.3
+    ],
+    [
+      27.75,
+      4.5
+    ],
+    [
+      28.95,
+      3.8
+    ],
+    [
+      35.68,
+      4.3
+    ],
+    [
+      43.66,
+      3.2
+    ],
+    [
+      54.11,
+      3.5
+    ],
+    [
+      64.02,
+      3.1
+    ],
+    [
+      74.18,
+      3.4
+    ],
+    [
+      77.4,
+      3.1
+    ],
+    [
+      78.0,
+      3.8
+    ],
+    [
+      91.06,
+      3.0
+    ],
+    [
+      95.54,
+      3.6
+    ],
+    [
+      97.4,
+      3.7
+    ],
+    [
+      103.21,
+      3.2
+    ],
+    [
+      129.93,
+      3.5
+    ]
+  ],
+  "candidates_tried": [
+    {
+      "phase": "Bi25FeO40_I23",
+      "rwp_after": 10.481461046771857,
+      "gain": 0.006491604532527617,
+      "scale": 0.00029414733327400884,
+      "accepted": false
+    },
+    {
+      "phase": "Bi2Fe4O9_Pbam",
+      "rwp_after": 10.443518041308446,
+      "gain": 0.044434609995938956,
+      "scale": 0.004907765509306952,
+      "accepted": false
+    },
+    {
+      "phase": "NdFeO3_Pnma",
+      "status": "diverged",
+      "scale": 1e-12,
+      "accepted": false
+    }
+  ],
+  "accepted_phases": [],
+  "base_rwp": 10.487952651304385,
+  "n_known_reflections": 76,
+  "final_gpx": "results/agent_llm.gpx",
+  "final_rwp": 10.487952651304385
+}

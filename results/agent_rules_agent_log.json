@@ -1,0 +1,70 @@
+{
+  "label": "agent_rules",
+  "started": "2026-10-18T21:28:42.541726",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 59.68427882423275,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 55.450584441299796,
+      "accepted": "True"
+    },
+    {
+      "stage": "profile_uvw",
+      "Rwp": 19.499734184605273,
+      "accepted": "True"
+    },
+    {
+      "stage": "profile_xy",
+      "Rwp": 14.206593063531878,
+      "accepted": "True"
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 14.14187048977299,
+      "accepted": "True"
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 13.94307015727069,
+      "accepted": "True"
+    }
+  ],
+  "remediations": [
+    {
+      "action": "fix_correlated_params",
+      "rwp_before": 13.94307015727069,
+      "rwp_after": 13.951776522165856,
+      "accepted": "True"
+    },
+    {
+      "action": "preferred_orientation_md",
+      "rwp_before": 13.951776522165856,
+      "rwp_after": 13.873276939039785,
+      "accepted": "True"
+    },
+    {
+      "action": "more_background",
+      "rwp_before": 13.873276939039785,
+      "rwp_after": 13.402764172722579,
+      "accepted": "True"
+    },
+    {
+      "action": "refine_shl",
+      "rwp_before": 13.402764172722579,
+      "rwp_after": 13.398060822886244,
+      "accepted": "True"
+    },
+    {
+      "action": "refine_zero",
+      "rwp_before": 13.398060822886244,
+      "rwp_after": 10.487952651304385,
+      "accepted": "True"
+    }
+  ],
+  "final_rwp": 10.487952651304385,
+  "finished": "2026-10-18T21:28:53.937366"
+}

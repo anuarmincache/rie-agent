@@ -1,0 +1,54 @@
+{
+  "label": "Nd2p5_850",
+  "started": "2026-10-18T20:45:28.353305",
+  "inputs": {
+    "data": "data/samples/Nd2p5_850.xye",
+    "cif": "data/samples/BFO.cif",
+    "instprm": "data/instrument/cuka_lab.instprm"
+  },
+  "stages": [
+    {
+      "stage": "1_scale_background",
+      "description": "scale factor + background (Chebyshev, 6 terms)",
+      "Rwp": 59.68427882423275,
+      "GOF": 10.7451435607766,
+      "converged": null
+    },
+    {
+      "stage": "2_lattice",
+      "description": "lattice parameters",
+      "Rwp": 55.450584441299796,
+      "GOF": 9.983771022825518,
+      "converged": null
+    },
+    {
+      "stage": "3_profile_uvw",
+      "description": "profile U, V, W (Caglioti)",
+      "Rwp": 19.499734184605273,
+      "GOF": 3.5113288521858856,
+      "converged": null
+    },
+    {
+      "stage": "4_profile_xy",
+      "description": "profile X, Y (size/strain)",
+      "Rwp": 14.206593063531878,
+      "GOF": 2.5584031545947017,
+      "converged": null
+    },
+    {
+      "stage": "5_atomic_positions",
+      "description": "atomic fractional coordinates",
+      "Rwp": 14.14187048977299,
+      "GOF": 2.547278863651215,
+      "converged": null
+    },
+    {
+      "stage": "6_thermal",
+      "description": "isotropic atomic displacement parameters",
+      "Rwp": 13.94307015727069,
+      "GOF": 2.5117847774962145,
+      "converged": null
+    }
+  ],
+  "finished": "2026-10-18T20:45:33.432585"
+}

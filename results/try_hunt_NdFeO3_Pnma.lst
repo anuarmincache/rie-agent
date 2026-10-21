@@ -1,0 +1,246 @@
+********************************************************************************
+   General Structure Analysis System-II Crystal Structure Refinement
+              by Robert B. Von Dreele & Brian H. Toby
+                Argonne National Laboratory(C), 2010
+ This product includes software developed by the UChicago Argonne, LLC,
+            as Operator of Argonne National Laboratory.
+                          Please cite:
+   B.H. Toby & R.B. Von Dreele, J. Appl. Cryst. 46, 544-549 (2013)
+********************************************************************************
+ Least squares controls:
+ Refinement type: analytic Hessian
+ Maximum number of cycles: 3
+ Regularize hydrogens (if any): False
+ Initial shift factor: 1.000
+
+ Phases:
+
+ Phase name: BiFeO3
+=======================================================================================================================================
+
+ X-ray scattering factors:
+   Symbol     fa                                      fb                                      fc
+---------------------------------------------------------------------------------------------------
+ Bi+3      21.80530  19.50260  19.10530   7.10295   1.23560   6.24149   0.47000  20.31850  12.47110
+ Fe+3      11.17640   7.38630   3.39480   0.07240   4.61470   0.30050  11.67290  38.55660   0.97070
+ O-2        3.76936   2.53342   1.91579   1.55094  15.07970   6.30430  40.34450   0.31291   0.22789
+
+ Electron scattering factors:
+   Symbol     fa                                                fb
+---------------------------------------------------------------------------------------------------
+ Bi         0.35300   1.52580   3.58150   4.55320   3.07140   0.06610   0.63240   3.59060  15.99620  57.57600
+ Fe         0.19290   0.82390   1.86890   2.36940   1.90600   0.10870   1.08060   4.76370  22.85000  76.73090
+ O          0.03650   0.17290   0.58050   0.88140   0.31210   0.06520   0.61840   2.94490   9.62980  28.21940
+
+ Neutron scattering factors:
+   Symbol   isotope       mass       b       resonant terms
+---------------------------------------------------------------------------------------------------
+ Bi+3    Nat. Abund.    208.980    0.852
+ Fe+3    Nat. Abund.     55.847    0.945
+ O-2     Nat. Abund.     15.999    0.580
+
+ Space Group: R 3 c
+ The lattice is noncentrosymmetric R-centered trigonal
+ The Laue symmetry is 3m1
+ The lattice point group is 3m
+ Multiplicity of a general site is 18
+ The location of the origin is arbitrary in z
+ 
+ The equivalent positions are:
+
+ (0,0,0; 2/3,1/3,1/3; 1/3,2/3,2/3)+
+
+ ( 1)     X,     Y,     Z 
+ ( 2)    -Y,   X-Y,     Z 
+ ( 3)   Y-X,    -X,     Z 
+ ( 4)   Y-X,     Y, 1/2+Z 
+ ( 5)    -Y,    -X, 1/2+Z 
+ ( 6)     X,   X-Y, 1/2+Z 
+
+ Atoms:
+   name    type  refine?   x         y         z      frac site sym  mult I/A   Uiso     U11     U22     U33     U12     U13     U23
+---------------------------------------------------------------------------------------------------------------------------------------
+    Bi1   Bi+3          0.00000   0.00000  -0.00012   1.000      3    6    I 0.00836                                                
+    Fe1   Fe+3          0.00000   0.00000   0.22110   1.000      3    6    I 0.00186                                                
+     O1    O-2          0.44027  -0.00375   0.95634   1.000      1   18    I 0.00345                                                
+
+ Unit cell: a = 5.57859 b = 5.57859 c = 13.85469 alpha = 90.000 beta = 90.000 gamma = 120.000 volume = 373.401 Refine? False
+
+ Phase name: NdFeO3_Pnma
+=======================================================================================================================================
+
+ X-ray scattering factors:
+   Symbol     fa                                      fb                                      fc
+---------------------------------------------------------------------------------------------------
+ Nd        22.68450  19.68470  12.77400   2.85137   2.66248   0.21063  15.88500 137.90300   1.98486
+ Fe        11.76950   7.35730   3.52220   2.30450   4.76110   0.30720  15.35350  76.88050   1.03690
+ O          3.04850   2.28680   1.54630   0.86700  13.27710   5.70110   0.32390  32.90890   0.25080
+
+ Electron scattering factors:
+   Symbol     fa                                                fb
+---------------------------------------------------------------------------------------------------
+ Nd         0.53680   2.33010   4.60580   4.66210   4.46220   0.13780   1.51400   8.87190  43.59670 141.80650
+ Fe         0.19290   0.82390   1.86890   2.36940   1.90600   0.10870   1.08060   4.76370  22.85000  76.73090
+ O          0.03650   0.17290   0.58050   0.88140   0.31210   0.06520   0.61840   2.94490   9.62980  28.21940
+
+ Neutron scattering factors:
+   Symbol   isotope       mass       b       resonant terms
+---------------------------------------------------------------------------------------------------
+ Nd      Nat. Abund.    144.240    0.787
+ Fe      Nat. Abund.     55.847    0.945
+ O       Nat. Abund.     15.999    0.580
+
+ Space Group: P n m a
+ The lattice is centrosymmetric primitive orthorhombic
+ The Laue symmetry is mmm
+ The lattice point group is mmm
+ Multiplicity of a general site is 8
+ The inversion center is located at 0,0,0
+ 
+ The equivalent positions are:
+
+ ( 1)     X,     Y,     Z 
+ ( 2) 1/2-X, 1/2+Y, 1/2+Z 
+ ( 3)     X, 1/2-Y,     Z 
+ ( 4) 1/2-X,    -Y, 1/2+Z 
+
+ Atoms:
+   name    type  refine?   x         y         z      frac site sym  mult I/A   Uiso     U11     U22     U33     U12     U13     U23
+---------------------------------------------------------------------------------------------------------------------------------------
+     Nd     Nd          0.04907   0.25000  -0.01088   1.000   m(y)    4    A         0.00706 0.00374 0.00665 0.00000-0.00076 0.00000
+     Fe     Fe          0.00000   0.00000   0.50000   1.000     -1    4    A         0.00616 0.00288 0.00515 0.00028 0.00012-0.00008
+     O1      O          0.47600   0.25000   0.08660   1.000   m(y)    4    A         0.00990 0.00210 0.00830 0.00000-0.00110 0.00000
+     O2      O         -0.29490  -0.04590   0.29550   1.000      1    8    A         0.00750 0.00550 0.00730-0.00110-0.00220 0.00080
+
+ Unit cell: a = 5.58870 b = 7.76190 c = 5.44890 alpha = 90.000 beta = 90.000 gamma = 90.000 volume = 236.367 Refine? False
+
+ Phase: BiFeO3 in histogram: PWDR Nd2p5_850.xye
+=======================================================================================================================================
+ Phase fraction  :          1 Refine? False
+ Extinction coeff:     0.0000 Refine? False
+ March-Dollase PO:     0.9755 Refine? False Axis: 0 0 1
+
+ Size model    : isotropic equatorial:       1.000 Refine? False
+	 LG mixing coeff.:       1.0000 Refine? False
+
+ Mustrain model: isotropic equatorial:      1000.0 Refine? False
+	 LG mixing coeff.:      1.0000 Refine? False
+
+ Hydrostatic/elastic strain:
+ names :         D11         D33
+ values:           0           0
+ refine:       False       False
+
+ Phase: NdFeO3_Pnma in histogram: PWDR Nd2p5_850.xye
+=======================================================================================================================================
+ Phase fraction  :       0.01 Refine? True
+ Extinction coeff:     0.0000 Refine? False
+ March-Dollase PO:     1.0000 Refine? False Axis: 0 0 1
+
+ Size model    : isotropic equatorial:       1.000 Refine? False
+	 LG mixing coeff.:       1.0000 Refine? False
+
+ Mustrain model: isotropic equatorial:      1000.0 Refine? False
+	 LG mixing coeff.:      1.0000 Refine? False
+
+ Hydrostatic/elastic strain:
+ names :         D11         D22         D33
+ values:           0           0           0
+ refine:       False       False       False
+
+ Histogram: PWDR Nd2p5_850.xye histogram Id: 0
+=======================================================================================================================================
+ Instrument type: Bragg-Brentano
+ Histogram limits:    10.00 deg to   130.00 deg
+
+ Sample Parameters:
+ Goniometer omega = 0.00, chi = 0.00, phi = 0.00
+ name  :         Scale         Shift  Transparency    SurfRoughA    SurfRoughB
+ value :        9.7977        0.0000        0.0000        0.0000        0.0000
+ refine:         False         False         False         False         False
+
+ Instrument Parameters:
+ name  : I(L2)/I(L1)        Lam1        Lam2    Polariz.        SH/L           U           V           W           X
+ value :    0.500000    1.540596    1.544493    0.700000    0.033665   61.828844 -100.050207   40.673654    4.166382
+ refine:       False                               False       False       False       False       False       False
+
+ name  :           Y           Z        Zero
+ value :    9.827347    0.000000    0.059190
+ refine:       False       False       False
+
+ Background function: chebyschev-1 Refine? False
+ Coefficients:    118.090   -60.444    64.490   -21.885     9.014    -0.703    -9.487     3.096     2.493    -9.921     7.985
+                   -8.370
+ Fixed background file: ; mult: 1.000  Refine? False
+
+ Refinement results:
+---------------------------------------------------------------------------------------------------------------------------------------
+ Number of function calls: 9 No. of observations: 12001 No. of parameters: 1 User rejected: 0 Sp. gp. extinct: 0
+ Refinement time =    2.870s,    1.435s/cycle, for 2 cycles
+ wR =   10.49%, chi**2 =      42761.2, GOF =   1.89
+
+ Phases:
+ Result for phase: BiFeO3
+=======================================================================================================================================
+
+ Atoms:
+   name      x         y         z      frac   Uiso     U11     U22     U33     U12     U13     U23
+---------------------------------------------------------------------------------------------------------------------------------------
+    Bi1   Bi+3:
+ values:   0.00000   0.00000  -0.00012   1.000 0.00836
+ sig   :                                               
+    Fe1   Fe+3:
+ values:   0.00000   0.00000   0.22110   1.000 0.00186
+ sig   :                                               
+     O1    O-2:
+ values:   0.44027  -0.00375   0.95634   1.000 0.00345
+ sig   :                                               
+
+ Density: 8.3469 g/cm**3
+ Result for phase: NdFeO3_Pnma
+=======================================================================================================================================
+
+ Atoms:
+   name      x         y         z      frac   Uiso     U11     U22     U33     U12     U13     U23
+---------------------------------------------------------------------------------------------------------------------------------------
+     Nd     Nd:
+ values:   0.04907   0.25000  -0.01088   1.000         0.00706 0.00374 0.00665 0.00000-0.00076 0.00000
+ sig   :                                                                                               
+     Fe     Fe:
+ values:   0.00000   0.00000   0.50000   1.000         0.00616 0.00288 0.00515 0.00028 0.00012-0.00008
+ sig   :                                                                                               
+     O1      O:
+ values:   0.47600   0.25000   0.08660   1.000         0.00990 0.00210 0.00830 0.00000-0.00110 0.00000
+ sig   :                                                                                               
+     O2      O:
+ values:  -0.29490  -0.04590   0.29550   1.000         0.00750 0.00550 0.00730-0.00110-0.00220 0.00080
+ sig   :                                                                                               
+
+ Density: 6.9714 g/cm**3
+
+ Phase: BiFeO3 in histogram: PWDR Nd2p5_850.xye
+=======================================================================================================================================
+ Final refinement RF, RF^2 = 100.00%, 100.00% on 76 reflections
+ Durbin-Watson statistic = 0.007
+ Bragg intensity sum = 2.7e+06
+ Phase fraction  :          1, sig          0 Weight fraction  :  1.00000, sig 4878835.13580
+
+ Phase: NdFeO3_Pnma in histogram: PWDR Nd2p5_850.xye
+=======================================================================================================================================
+ Final refinement RF, RF^2 = 100.00%, 100.00% on 217 reflections
+ Durbin-Watson statistic = 0.007
+ Bragg intensity sum = 8.22e+12
+ Phase fraction  :      1e-12, sig  9.228e+06 Weight fraction  :  0.00000, sig 4878835.13580
+
+ Histogram: PWDR Nd2p5_850.xye histogram Id: 0
+=======================================================================================================================================
+ PWDR histogram weight factor = 1.000
+ Final refinement wR = 100.00% on 12001 observations in this histogram
+ Other residuals: R = 100.00%, R-bkg = 100.00%, wR-bkg = 100.00% wRmin = 5.56%
+ Instrument type: Bragg-Brentano
+
+ Resonant form factors:(ref: D.T. Cromer & D.A. Liberman (1981), Acta Cryst. A37, 267-268.)
+ Element:     Bi+3     Fe+3      O-2       Nd       Fe        O
+ f'     :   -4.013   -1.134    0.049   -3.100   -1.134    0.049
+ f"     :    8.927    3.198    0.032   10.932    3.198    0.032
+ Background sums: empirical 1.15e+06, Debye 0, peaks 0, Total 1.15e+06
