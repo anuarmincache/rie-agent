@@ -1,48 +1,93 @@
-# rie-agent
+<div align="center">
 
-Autonomous Rietveld refinement agent built on GSAS-II.
+<img src="assets/rie-agent-banner.svg" alt="rie-agent — physics-guided Rietveld refinement" width="100%" />
 
-An LLM-orchestrated pipeline that performs staged Rietveld refinement with
-**deterministic physical validation** at every step: numerical refinement is
-computed by GSAS-II (via `GSASIIscriptable`), while acceptance/rejection of
-each stage is decided by explicit physical criteria — not by the language
-model. The agent plans, executes, validates, and rolls back until the
-refinement converges to a physically meaningful optimum.
+<br />
 
-Primary use case: Nd-doped BiFeO3 multiferroic perovskites (XRD and neutron
-powder diffraction), with a generic, recipe-driven design applicable to any
-crystalline phase.
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](docs/SETUP.md)
+[![GSAS-II](https://img.shields.io/badge/Engine-GSAS--II-215C7A)](https://github.com/AdvancedPhotonSource/GSAS-II)
+[![License: MIT](https://img.shields.io/badge/License-MIT-16A085)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Active%20development-F59E0B)](docs/ROADMAP.md)
+[![Roadmap](https://img.shields.io/badge/Roadmap-Sprint%203-5865F2)](docs/ROADMAP.md)
 
-## Key design principles
+**A research-oriented agent for staged, physically validated Rietveld refinement.**
 
-- **Deterministic validation over LLM judgment** — Rwp/GOF thresholds,
-  Biso ranges, occupancy bounds, and divergence detection are hard checks.
-- **Staged refinement recipes** (scale -> background -> lattice -> profile ->
-  positions -> thermal) defined as YAML state graphs, not blind trial-and-error.
-- **Checkpoint/rollback** — every accepted stage is a checkpoint; divergence
-  triggers automatic rollback to the last stable state.
-- **Full trajectory logging** — every agent decision is recorded.
+[Architecture](#architecture) · [Getting started](#getting-started) · [Development roadmap](docs/ROADMAP.md) · [Setup notes](docs/SETUP.md)
 
-## Project status
+</div>
 
-Early development. See `docs/ROADMAP.md`.
+---
 
-## Repository layout
+## Overview
 
-    src/            agent source code (gsas bridge, validators, orchestrator)
-    data/samples/   example diffraction data, CIFs, instrument files
-    data/results/   refinement outputs (.gpx, logs) - not versioned
-    notebooks/      exploration and demo notebooks
-    docs/           setup log, roadmap, architecture decisions
-    paper/          JOSS paper (Markdown) and full article (LaTeX) - upcoming
+**rie-agent** combines [GSAS-II](https://github.com/AdvancedPhotonSource/GSAS-II) numerical refinement with a constrained planning layer. The refinement engine computes the parameters; deterministic checks evaluate whether a stage is acceptable. An optional local LLM proposes remediation actions but does **not** decide numerical validity.
 
-## Requirements
+The primary research context is Nd-substituted BiFeO₃ powder diffraction. The codebase is being developed and benchmarked; it is **not** a validated turnkey refinement service.
 
-- Linux (developed on Ubuntu 24.04 / WSL2)
-- Conda env `rie-agent`: python=3.12, numpy=2.2 (conda-forge)
-- GSAS-II from source (see `docs/SETUP.md`)
+## Architecture
 
-## License
+```text
+Powder diffraction + CIF + instrument parameters
+                     |
+                     v
+             GSAS-II refinement
+                     |
+                     v
+         Deterministic validation
+             /               \
+          Accept             Reject
+            |                   |
+        Next stage       Restore checkpoint
+                                |
+                         Planner suggests
+                         remediation action
+                                |
+                         Retry and validate
+```
 
-MIT (this repository). GSAS-II is a separate dependency distributed
-under its own license (free for academic use).
+| Component | Responsibility | Source |
+| --- | --- | --- |
+| Staged refinement | Scale/background, cell, profile, atomic positions and thermal parameters | [`src/refine_staged.py`](src/refine_staged.py) |
+| Agent orchestration | Stage progression, checkpoint/rollback and remediation; local Ollama or rule-based fallback | [`src/agent.py`](src/agent.py) |
+| Physical validation | Explicit checks on refinement quality and physical parameter constraints | [`src/validators.py`](src/validators.py) |
+| Secondary-phase investigation | Residual-peak screening and isolated candidate-phase scale trials | [`src/phase_hunter.py`](src/phase_hunter.py) |
+
+### Design principles
+
+- **Physics before model judgment:** acceptance and rejection rely on explicit checks, not LLM-generated scores.
+- **Traceable stages:** refinement progress and decisions are recorded for inspection.
+- **Reversible experiments:** rejected trials can return to a prior accepted state.
+- **Constrained AI:** optional Ollama planning selects from supported actions; rules provide a fallback.
+- **Conservative phase screening:** candidate phases are trialed on copies of the project, with deterministic acceptance criteria.
+
+## Getting started
+
+Development environment documented for **Windows 11 + WSL2 / Ubuntu 24.04**, Conda, Python 3.12 and GSAS-II installed from source. Follow the [full setup guide](docs/SETUP.md) for binary and dependency details.
+
+```bash
+conda activate rie-agent
+export GSASII_PATH="$HOME/GSAS-II"
+python src/agent.py DATA.xye PHASE.cif INSTRUMENT.instprm --outdir results --label trial
+```
+
+For a rule-only run without Ollama, append `--no-llm`. Replace the example filenames with your own compatible diffraction, CIF and instrument files. This command is a development entry point, not a guarantee of convergence.
+
+For secondary-phase screening, see [`src/phase_hunter.py`](src/phase_hunter.py) and its usage documentation.
+
+## Research scope and maturity
+
+Current development centers on **Bi₁₋ₓNdₓFeO₃** and laboratory powder X-ray diffraction. Neutron powder diffraction is part of the broader intended scope. The [roadmap](docs/ROADMAP.md) marks staged refinement, validators, agent orchestration and secondary-phase screening as completed development sprints, with **benchmarking currently in progress**. Visualization, publication and release milestones remain planned.
+
+## Repository guide
+
+- [`src/`](src/) — refinement, orchestration, validation and phase screening
+- [`data/`](data/) — research inputs and sample assets
+- [`docs/SETUP.md`](docs/SETUP.md) — environment and installation notes
+- [`docs/DECISIONS.md`](docs/DECISIONS.md) — architectural decisions
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) — completed and planned work
+
+## License and attribution
+
+The repository is released under the [MIT License](LICENSE). **GSAS-II is a separate dependency** with its own terms. This project is an independent research tool built around its scripting interface.
+
+<div align="center"><sub>Scientific computing · Powder diffraction · Reproducible refinement</sub></div>
