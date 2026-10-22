@@ -1,0 +1,127 @@
+{
+  "label": "nd15_auto",
+  "started": "2026-10-21T22:13:25.334854",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 50.009311712410465,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 19.966009442611522,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 19.34778728193149,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 19.139808002422182,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 15.5403777545656,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 15.202128903610731,
+      "accepted": true
+    },
+    {
+      "stage": "uniaxial_size",
+      "Rwp": 12.762053305939352,
+      "accepted": true
+    }
+  ],
+  "remediations": [
+    {
+      "action": "nominal_nd",
+      "rwp_before": 12.762053305939352,
+      "rwp_after": 12.619893460558233,
+      "accepted": true
+    },
+    {
+      "action": "hold_negative_uiso",
+      "rwp_before": 12.619893460558233,
+      "rwp_after": 12.619893460558233,
+      "accepted": false
+    },
+    {
+      "action": "fix_correlated_params",
+      "rwp_before": 12.619893460558233,
+      "rwp_after": 12.613840163567222,
+      "accepted": true
+    },
+    {
+      "action": "extra_cycles",
+      "rwp_before": 12.613840163567222,
+      "rwp_after": 12.613840163567222,
+      "accepted": false
+    },
+    {
+      "action": "preferred_orientation",
+      "rwp_before": 12.613840163567222,
+      "rwp_after": 12.613840163567222,
+      "accepted": false
+    },
+    {
+      "action": "background_18",
+      "rwp_before": 12.613840163567222,
+      "rwp_after": 12.613840163567222,
+      "accepted": false
+    },
+    {
+      "action": "uniaxial_size",
+      "rwp_before": 12.613840163567222,
+      "rwp_after": 12.613840163567222,
+      "accepted": false
+    },
+    {
+      "action": "phase_Bi25FeO40_I23",
+      "rwp_before": 12.613840163567222,
+      "rwp_after": 12.613840163567222,
+      "accepted": false
+    },
+    {
+      "action": "phase_Bi2Fe4O9_Pbam",
+      "rwp_before": 12.613840163567222,
+      "rwp_after": 12.613840163567222,
+      "accepted": false
+    },
+    {
+      "action": "phase_Bi2O3_P21c",
+      "rwp_before": 12.613840163567222,
+      "rwp_after": 12.613840163567222,
+      "accepted": false
+    }
+  ],
+  "nd_fraction": 0.15,
+  "use_llm": true,
+  "action_menu": [
+    "nominal_nd",
+    "hold_negative_uiso",
+    "fix_correlated_params",
+    "extra_cycles",
+    "preferred_orientation",
+    "background_18",
+    "uniaxial_size",
+    "phase_Bi25FeO40_I23",
+    "phase_Bi2Fe4O9_Pbam",
+    "phase_Bi2O3_P21c",
+    "phase_Fe2O3_R-3c",
+    "phase_Nd2O3_A",
+    "phase_NdFeO3_Pnma"
+  ],
+  "rwp_ceiling": null,
+  "fixed_instrument": true,
+  "final_rwp": 12.613840163567222,
+  "final_gof": 2.3272510053600732,
+  "verdict_ok": false,
+  "meets_ceiling": false,
+  "finished": "2026-10-21T22:13:58.974269"
+}

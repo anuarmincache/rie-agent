@@ -58,5 +58,49 @@
     ],
     "rejected_actions": [],
     "note": "Add Nd as Nd+3. nominal_nd took Rwp from 11.06 to 10.90. Oxygen Uiso stayed negative and was held at 0.005. Final Rwp 10.91."
+  },
+  {
+    "label": "nd15_auto",
+    "nd_fraction": 0.15,
+    "rwp": 12.614,
+    "gof": 2.327,
+    "verdict_ok": false,
+    "kept_actions": [
+      "nominal_nd",
+      "fix_correlated_params"
+    ],
+    "rejected_actions": [
+      "hold_negative_uiso",
+      "extra_cycles",
+      "preferred_orientation",
+      "background_18",
+      "uniaxial_size",
+      "phase_Bi25FeO40_I23",
+      "phase_Bi2Fe4O9_Pbam",
+      "phase_Bi2O3_P21c"
+    ],
+    "note": ""
+  },
+  {
+    "label": "nd20_auto",
+    "nd_fraction": 0.2,
+    "rwp": 21.64,
+    "gof": 4.175,
+    "verdict_ok": false,
+    "kept_actions": [
+      "nominal_nd"
+    ],
+    "rejected_actions": [
+      "hold_negative_uiso",
+      "fix_correlated_params",
+      "extra_cycles",
+      "preferred_orientation",
+      "background_18",
+      "uniaxial_size",
+      "phase_Bi25FeO40_I23",
+      "phase_Bi2Fe4O9_Pbam",
+      "phase_Bi2O3_P21c"
+    ],
+    "note": ""
   }
 ]
