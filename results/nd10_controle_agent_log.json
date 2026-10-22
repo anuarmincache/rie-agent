@@ -1,0 +1,80 @@
+{
+  "label": "nd10_controle",
+  "started": "2026-10-21T21:27:31.702020",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 38.98129246934689,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 19.758851093984227,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 19.403084494037294,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 19.20495383178945,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 13.356565304508361,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 13.314119930347967,
+      "accepted": true
+    },
+    {
+      "stage": "uniaxial_size",
+      "Rwp": 11.063111201589686,
+      "accepted": true
+    }
+  ],
+  "remediations": [
+    {
+      "action": "fix_correlated_params",
+      "rwp_before": 11.063111201589686,
+      "rwp_after": 11.072655907812695,
+      "accepted": true
+    },
+    {
+      "action": "extra_cycles",
+      "rwp_before": 11.072655907812695,
+      "rwp_after": 11.072699555053095,
+      "accepted": true
+    },
+    {
+      "action": "preferred_orientation",
+      "rwp_before": 11.072699555053095,
+      "rwp_after": 11.072745353300874,
+      "accepted": true
+    },
+    {
+      "action": "background_18",
+      "rwp_before": 11.072745353300874,
+      "rwp_after": 11.072705418337746,
+      "accepted": true
+    },
+    {
+      "action": "uniaxial_size",
+      "rwp_before": 11.072705418337746,
+      "rwp_after": 11.072746110942292,
+      "accepted": true
+    }
+  ],
+  "rwp_ceiling": 9.94,
+  "fixed_instrument": true,
+  "final_rwp": 11.072746110942292,
+  "final_gof": 2.1038379279811275,
+  "verdict_ok": false,
+  "meets_ceiling": false,
+  "finished": "2026-10-21T21:27:42.908241"
+}

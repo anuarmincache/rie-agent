@@ -1,0 +1,49 @@
+{
+  "label": "nd5_controle",
+  "started": "2026-10-21T21:21:17.175599",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 36.976615555585816,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 13.53686689882625,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 13.364451308136049,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 13.278824698669997,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 11.775797565362861,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 11.764836252977759,
+      "accepted": true
+    },
+    {
+      "stage": "uniaxial_size",
+      "Rwp": 10.133054067271868,
+      "accepted": true
+    }
+  ],
+  "remediations": [],
+  "rwp_ceiling": 9.94,
+  "fixed_instrument": true,
+  "final_rwp": 10.133054067271868,
+  "final_gof": 1.7849886057173747,
+  "verdict_ok": true,
+  "meets_ceiling": false,
+  "finished": "2026-10-21T21:21:23.837237"
+}

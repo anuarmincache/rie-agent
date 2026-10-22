@@ -1,0 +1,186 @@
+********************************************************************************
+   General Structure Analysis System-II Crystal Structure Refinement
+              by Robert B. Von Dreele & Brian H. Toby
+                Argonne National Laboratory(C), 2010
+ This product includes software developed by the UChicago Argonne, LLC,
+            as Operator of Argonne National Laboratory.
+                          Please cite:
+   B.H. Toby & R.B. Von Dreele, J. Appl. Cryst. 46, 544-549 (2013)
+********************************************************************************
+ Least squares controls:
+ Refinement type: analytic Hessian
+ Maximum number of cycles: 8
+ Regularize hydrogens (if any): False
+ Initial shift factor: 1.000
+
+ Phases:
+
+ Phase name: BiFeO3
+=======================================================================================================================================
+
+ X-ray scattering factors:
+   Symbol     fa                                      fb                                      fc
+---------------------------------------------------------------------------------------------------
+ Bi+3      21.80530  19.50260  19.10530   7.10295   1.23560   6.24149   0.47000  20.31850  12.47110
+ Fe+3      11.17640   7.38630   3.39480   0.07240   4.61470   0.30050  11.67290  38.55660   0.97070
+ O-2        3.76936   2.53342   1.91579   1.55094  15.07970   6.30430  40.34450   0.31291   0.22789
+ H          0.49300   0.32291   0.14019   0.04081  10.51090  26.12570   3.14236  57.79970   0.00304
+
+ Electron scattering factors:
+   Symbol     fa                                                fb
+---------------------------------------------------------------------------------------------------
+ Bi         0.35300   1.52580   3.58150   4.55320   3.07140   0.06610   0.63240   3.59060  15.99620  57.57600
+ Fe         0.19290   0.82390   1.86890   2.36940   1.90600   0.10870   1.08060   4.76370  22.85000  76.73090
+ O          0.03650   0.17290   0.58050   0.88140   0.31210   0.06520   0.61840   2.94490   9.62980  28.21940
+ H          0.00880   0.04490   0.14810   0.23560   0.09140   0.11520   1.08670   4.97550  16.55910  43.27430
+
+ Neutron scattering factors:
+   Symbol   isotope       mass       b       resonant terms
+---------------------------------------------------------------------------------------------------
+ Bi+3    Nat. Abund.    208.980    0.852
+ Fe+3    Nat. Abund.     55.847    0.945
+ O-2     Nat. Abund.     15.999    0.580
+ H       Nat. Abund.      1.008   -0.374
+
+ Space Group: R 3 c
+ The lattice is noncentrosymmetric R-centered trigonal
+ The Laue symmetry is 3m1
+ The lattice point group is 3m
+ Multiplicity of a general site is 18
+ The location of the origin is arbitrary in z
+ 
+ The equivalent positions are:
+
+ (0,0,0; 2/3,1/3,1/3; 1/3,2/3,2/3)+
+
+ ( 1)     X,     Y,     Z 
+ ( 2)    -Y,   X-Y,     Z 
+ ( 3)   Y-X,    -X,     Z 
+ ( 4)   Y-X,     Y, 1/2+Z 
+ ( 5)    -Y,    -X, 1/2+Z 
+ ( 6)     X,   X-Y, 1/2+Z 
+
+ Atoms:
+   name    type  refine?   x         y         z      frac site sym  mult I/A   Uiso     U11     U22     U33     U12     U13     U23
+---------------------------------------------------------------------------------------------------------------------------------------
+    Bi1   Bi+3      U   0.00000   0.00000   0.00000   0.900      3    6    I 0.00818                                                
+    Fe1   Fe+3     XU   0.00000   0.00000   0.22327   1.000      3    6    I-0.00078                                                
+     O1    O-2     XU   0.42816  -0.02187   0.96004   1.000      1   18    I-0.00277                                                
+    Nd1      H      U   0.00000   0.00000   0.00000   0.100      3    6    I 0.00818                                                
+
+ Unit cell: a = 5.57753 b = 5.57753 c = 13.81612 alpha = 90.000 beta = 90.000 gamma = 120.000 volume = 372.221 Refine? True
+
+ Phase: BiFeO3 in histogram: PWDR Nd10_830.xye
+=======================================================================================================================================
+ Phase fraction  :          1 Refine? False
+ Extinction coeff:     0.0000 Refine? False
+ March-Dollase PO:     0.9526 Refine? True Axis: 0 0 1
+
+ Size model    :  uniaxial equatorial:      10.000 Refine? False axial:       0.102 Refine? True
+	 LG mixing coeff.:       1.0000 Refine? False
+
+ Mustrain model: isotropic equatorial:      1000.0 Refine? False
+	 LG mixing coeff.:      1.0000 Refine? False
+
+ Hydrostatic/elastic strain:
+ names :         D11         D33
+ values:           0           0
+ refine:       False       False
+
+ Histogram: PWDR Nd10_830.xye histogram Id: 0
+=======================================================================================================================================
+ Instrument type: Bragg-Brentano
+ Histogram limits:    10.00 deg to   130.00 deg
+
+ Sample Parameters:
+ Goniometer omega = 0.00, chi = 0.00, phi = 0.00
+ name  :         Scale         Shift  Transparency    SurfRoughA    SurfRoughB
+ value :        7.9224        0.0000        0.0000        0.0000        0.0000
+ refine:          True         False         False         False         False
+
+ Instrument Parameters:
+ name  : I(L2)/I(L1)        Lam1        Lam2    Polariz.        SH/L           U           V           W           X
+ value :    0.500000    1.540596    1.544493    0.700000    0.033665   59.185673 -100.050207   37.640084    3.976716
+ refine:       False                               False       False       False       False       False       False
+
+ name  :           Y           Z        Zero
+ value :    9.827347    0.000000    0.061680
+ refine:       False       False       False
+
+ Background function: chebyschev-1 Refine? True
+ Coefficients:    196.232  -143.211    77.072    18.671   -44.544    51.083   -34.490     2.356    26.774   -33.772    23.980
+                   -8.743    -7.650    11.994   -10.064     4.907     0.466     1.055
+ Fixed background file: ; mult: 1.000  Refine? False
+
+ Refinement results:
+---------------------------------------------------------------------------------------------------------------------------------------
+ Number of function calls: 9 No. of observations: 12001 No. of parameters: 30 User rejected: 0 Sp. gp. extinct: 0
+ Refinement time =    1.027s,    0.257s/cycle, for 4 cycles
+ wR =   10.64%, chi**2 =      48915.1, GOF =   2.02
+----------------------------------------------------------------------------------------------------------------------------------
+Parameters generated by constraints
+
+ name  :     0::AUiso:0          0::A0
+ value :        0.00805        0.04286
+ sig   :        0.00014        0.00000 
+
+ Phases:
+ Result for phase: BiFeO3
+=======================================================================================================================================
+ Reciprocal metric tensor: 
+  names :            A11            A22            A33            A12            A13            A23
+  values:    0.042860762    0.042860762    0.005238782    0.042860762    0.000000000    0.000000000
+  esds  :    0.000000894                   0.000000155                                             
+ New unit cell:
+  names :           a           b           c       alpha        beta       gamma      Volume
+  values:    5.577498    5.577498   13.816080     90.0000     90.0000    120.0000     372.215
+  esds  :    0.000097                0.000205                                           0.008
+
+ Atoms:
+   name      x         y         z      frac   Uiso     U11     U22     U33     U12     U13     U23
+---------------------------------------------------------------------------------------------------------------------------------------
+    Bi1   Bi+3:
+ values:   0.00000   0.00000   0.00000   0.900 0.00805
+ sig   :                                       0.00014 
+    Fe1   Fe+3:
+ values:   0.00000   0.00000   0.22279   1.000 0.00834
+ sig   :                       0.00013         0.00060 
+     O1    O-2:
+ values:   0.43122  -0.01011   0.95958   1.000 0.00295
+ sig   :   0.00120   0.00112   0.00038         0.00185 
+    Nd1      H:
+ values:   0.00000   0.00000   0.00000   0.100 0.00805
+ sig   :                                       (.00014)
+
+ Density: 7.8168 g/cm**3
+
+ Phase: BiFeO3 in histogram: PWDR Nd10_830.xye
+=======================================================================================================================================
+ Final refinement RF, RF^2 = 2.73%, 6.63% on 75 reflections
+ Durbin-Watson statistic = 0.513
+ Bragg intensity sum = 2.19e+06
+ March-Dollase PO:     0.9517, sig     0.0017
+
+ Size model:      uniaxial equatorial:    10.00000 axial:      0.1037, sig:  0.0013 LG mix coeff.:      1.0000
+
+ Histogram: PWDR Nd10_830.xye histogram Id: 0
+=======================================================================================================================================
+ PWDR histogram weight factor = 1.000
+ Final refinement wR = 10.64% on 12001 observations in this histogram
+ Other residuals: R = 8.20%, R-bkg = 9.41%, wR-bkg = 10.64% wRmin = 5.27%
+ Instrument type: Bragg-Brentano
+
+ Resonant form factors:(ref: D.T. Cromer & D.A. Liberman (1981), Acta Cryst. A37, 267-268.)
+ Element:     Bi+3     Fe+3      O-2        H
+ f'     :   -4.013   -1.134    0.049    0.000
+ f"     :    8.927    3.198    0.032    0.000
+
+ Sample Parameters:
+ names :         Scale         Shift  Transparency    SurfRoughA    SurfRoughB
+ values:        9.7596        0.0000        0.0000        0.0000        0.0000
+ sig   :        0.0251                                                        
+
+ Background function: chebyschev-1
+ value :      196.4    -143.2      77.4     18.72    -45.08     51.94    -35.32     2.489     26.84    -34.13     24.47    -8.801    -7.399     12.97    -10.51     5.876    0.2767     1.562
+ sig   :     0.4343    0.7565    0.6699    0.6593    0.6557    0.6515     0.636      0.63     0.616     0.608    0.5986    0.5933    0.5746    0.5664    0.5438    0.5447    0.4609    0.4398
+ Background sums: empirical 2.09e+06, Debye 0, peaks 0, Total 2.09e+06

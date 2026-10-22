@@ -79,3 +79,15 @@ encoded in code. The agent's remediation table should grow from this log.
 **Result:** `--label nd2p5_regress --no-llm` finishes at array Rwp 9.85, GOF 1.78, VERDICT OK, under the ceiling 9.94.
 **Rule for the agent:** Use this instprm for the next composition. It is a transfer of the Nd2.5 hand fit, not a certified instrument calibration. X and Y stay in the file because the size model was refined against them.
 
+## 2026-10-21 — Nd10% secondary phases rejected
+**Symptom:** The frozen-instrument control on Nd10_830, still pure BiFeO3, finished at array Rwp 11.07, GOF 2.10, VERDICT FAIL. Fe1 Uiso was -0.0008 and O1 Uiso was -0.0028. Twenty-four weak residual peaks sat above the Bragg mask.
+**Action:** Scale-only trials, each on a copy of `results/nd10_controle.gpx`, for the three library phases plus COD α-Bi2O3 (9012546), hematite (5910082) and A-type Nd2O3 (1010281). Cell and atoms of every phase stayed fixed.
+**Result:** Bi25FeO40 gain 0.00, Bi2Fe4O9 gain 0.009, Bi2O3 gain 0.003, Fe2O3 gain 0.00, Nd2O3 gain 0.00. NdFeO3 Pnma diverged (scale 1e-12). None reached the 0.20 Rwp gate. Not adopted.
+**Rule for the agent:** Do not add these phases to the Nd10 model on the strength of this scan. The Pnma CIF is the NdFeO3 end-member cell, so that trial does not test a Bi0.9Nd0.1 orthorhombic perovskite.
+
+## 2026-10-21 — Nd10% nominal A-site occupancy
+**Symptom:** The pure-Bi control had negative Fe and O Uiso. Secondary phases did not explain the residual.
+**Action:** On a copy, set Bi occupancy to 0.90 and added Nd at 0.10 on (0, 0, 0). Coordinates stayed fixed, occupancy was not refined, and Nd Uiso was tied to Bi with an equivalence constraint. Instrument flags stayed frozen.
+**Result:** Array Rwp 11.073 -> 10.639, GOF 2.10 -> 2.02. Fe Uiso -0.0008 -> 0.0083, O Uiso -0.0028 -> 0.0030, Bi and Nd Uiso 0.0081. VERDICT OK. Adopted as `results/nd10_nominal.gpx`.
+**Rule for the agent:** For x=0.10 use nominal Bi 0.90 / Nd 0.10 with both coordinates frozen and one shared Uiso. Do not refine occupancy on this lab scan.
+

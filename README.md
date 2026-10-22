@@ -83,6 +83,8 @@ python src/agent.py data/samples/Nd2p5_850.xye data/samples/BFO.cif \
 
 That run finishes at array Rwp 9.85, GOF 1.78 and VERDICT OK.
 
+The same frozen instrument on Nd 5% (`data/samples/Nd5_870.xye`, pure BiFeO₃) finishes at Rwp 10.13, GOF 1.78 and VERDICT OK. On Nd 10% (`data/samples/Nd10_830.xye`) the pure BiFeO₃ control reaches Rwp 11.07 with negative Fe and O Uiso. Nominal occupancy Bi 0.90 and Nd 0.10, coordinates fixed and Uiso tied, is in [`tools/nd10_nominal.py`](tools/nd10_nominal.py) and finishes at Rwp 10.64, GOF 2.02 and VERDICT OK.
+
 For secondary-phase screening, see [`src/phase_hunter.py`](src/phase_hunter.py) and its usage documentation.
 
 ## Research scope and maturity
