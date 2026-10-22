@@ -1,0 +1,79 @@
+{
+  "label": "nd10_auto",
+  "started": "2026-10-21T21:52:27.859467",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 38.98129246934689,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 19.758851093984227,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 19.403084494037294,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 19.20495383178945,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 13.356565304508361,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 13.314119930347967,
+      "accepted": true
+    },
+    {
+      "stage": "uniaxial_size",
+      "Rwp": 11.063111201589686,
+      "accepted": true
+    }
+  ],
+  "remediations": [
+    {
+      "action": "nominal_nd",
+      "rwp_before": 11.063111201589686,
+      "rwp_after": 10.901307240101431,
+      "accepted": true
+    },
+    {
+      "action": "hold_negative_uiso",
+      "rwp_before": 10.901307240101431,
+      "rwp_after": 10.906912096153315,
+      "accepted": true
+    }
+  ],
+  "nd_fraction": 0.1,
+  "use_llm": true,
+  "action_menu": [
+    "nominal_nd",
+    "hold_negative_uiso",
+    "fix_correlated_params",
+    "extra_cycles",
+    "preferred_orientation",
+    "background_18",
+    "uniaxial_size",
+    "phase_Bi25FeO40_I23",
+    "phase_Bi2Fe4O9_Pbam",
+    "phase_Bi2O3_P21c",
+    "phase_Fe2O3_R-3c",
+    "phase_Nd2O3_A",
+    "phase_NdFeO3_Pnma"
+  ],
+  "rwp_ceiling": null,
+  "fixed_instrument": true,
+  "final_rwp": 10.906912096153315,
+  "final_gof": 2.0722426722371643,
+  "verdict_ok": true,
+  "meets_ceiling": true,
+  "finished": "2026-10-21T21:52:39.721606"
+}

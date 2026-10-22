@@ -88,6 +88,12 @@ encoded in code. The agent's remediation table should grow from this log.
 ## 2026-10-21 — Nd10% nominal A-site occupancy
 **Symptom:** The pure-Bi control had negative Fe and O Uiso. Secondary phases did not explain the residual.
 **Action:** On a copy, set Bi occupancy to 0.90 and added Nd at 0.10 on (0, 0, 0). Coordinates stayed fixed, occupancy was not refined, and Nd Uiso was tied to Bi with an equivalence constraint. Instrument flags stayed frozen.
-**Result:** Array Rwp 11.073 -> 10.639, GOF 2.10 -> 2.02. Fe Uiso -0.0008 -> 0.0083, O Uiso -0.0028 -> 0.0030, Bi and Nd Uiso 0.0081. VERDICT OK. Adopted as `results/nd10_nominal.gpx`.
-**Rule for the agent:** For x=0.10 use nominal Bi 0.90 / Nd 0.10 with both coordinates frozen and one shared Uiso. Do not refine occupancy on this lab scan.
+**Result:** The first run stored the new atom as H, because GSAS-II names the ion Nd+3. With Nd+3, array Rwp goes from 11.07 to 10.90 and Fe Uiso becomes positive, but O Uiso stays slightly negative. Holding that Uiso at 0.005 changes Rwp by about 0.01.
+**Rule for the agent:** Add Nd as Nd+3, never Nd3+. For x=0.10 use nominal Bi 0.90 / Nd 0.10 with both coordinates frozen and one shared Uiso. If oxygen Uiso is still negative, hold it instead of adding a secondary phase.
+
+## 2026-10-21 — Planner reads earlier runs
+**Symptom:** The Ollama planner only saw the failing checks of the current run. A new composition could not use what Nd 2.5, 5 and 10 had already shown.
+**Action:** Finished runs are appended to `results/run_memory.json` (fraction, Rwp, verdict, kept and rejected actions). The planner prompt includes the nearest rows before it picks an action.
+**Result:** The file is seeded with the Nd2.5 regression, the Nd5 control, the Nd10 pure-Bi failure, the rejected phase trials, and the Nd10 run that kept nominal_nd and hold_negative_uiso.
+**Rule for the agent:** Do not delete that file. A new sample should see it. The model still cannot free Bi1, Nd1, occupancy, or the frozen instrument.
 

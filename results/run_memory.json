@@ -1,0 +1,62 @@
+[
+  {
+    "label": "nd2p5_regress",
+    "nd_fraction": 0.025,
+    "rwp": 9.852,
+    "gof": 1.775,
+    "verdict_ok": true,
+    "kept_actions": [],
+    "rejected_actions": [],
+    "note": "Frozen instrument from the hand fit. Pure BiFeO3 passed. The 9.94 ceiling applies only to this composition."
+  },
+  {
+    "label": "nd5_controle",
+    "nd_fraction": 0.05,
+    "rwp": 10.133,
+    "gof": 1.785,
+    "verdict_ok": true,
+    "kept_actions": [],
+    "rejected_actions": [],
+    "note": "Same frozen instrument, pure BiFeO3. Cell volume 372.99 A3."
+  },
+  {
+    "label": "nd10_controle",
+    "nd_fraction": 0.1,
+    "rwp": 11.073,
+    "gof": 2.104,
+    "verdict_ok": false,
+    "kept_actions": [],
+    "rejected_actions": [],
+    "note": "Pure BiFeO3. Fe and O Uiso went negative. Cell volume 372.22 A3."
+  },
+  {
+    "label": "nd10_phases",
+    "nd_fraction": 0.1,
+    "rwp": 11.073,
+    "gof": 2.104,
+    "verdict_ok": false,
+    "kept_actions": [],
+    "rejected_actions": [
+      "phase_Bi25FeO40_I23",
+      "phase_Bi2Fe4O9_Pbam",
+      "phase_Bi2O3_P21c",
+      "phase_Fe2O3_R-3c",
+      "phase_Nd2O3_A",
+      "phase_NdFeO3_Pnma"
+    ],
+    "note": "Scale-only trials. Largest gain 0.009. NdFeO3 Pnma diverged: that CIF is the NdFeO3 end-member cell, not a Bi0.9Nd0.1 cell."
+  },
+  {
+    "label": "nd10_auto",
+    "nd_fraction": 0.1,
+    "rwp": 10.907,
+    "gof": 2.072,
+    "verdict_ok": true,
+    "kept_actions": [
+      "nominal_nd",
+      "hold_negative_uiso"
+    ],
+    "rejected_actions": [],
+    "note": "Add Nd as Nd+3. nominal_nd took Rwp from 11.06 to 10.90. Oxygen Uiso stayed negative and was held at 0.005. Final Rwp 10.91."
+  }
+]

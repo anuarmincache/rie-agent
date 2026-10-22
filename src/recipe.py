@@ -18,6 +18,7 @@ Locks, learned by failed refinements:
 import numpy as np
 
 ORIGIN_ANCHOR = "Bi1"
+ND_SITE = "Nd1"
 FROZEN_AFTER_PROFILE = ("V", "Y", "SH/L")
 # Held when the instprm already carries the Nd2.5 hand refinement.
 # X and Y are included because the validated size model was refined
@@ -96,12 +97,49 @@ def freeze_instrument(hist, keys):
 
 
 def pin_origin(phase):
-    """Drop the X flag on the polar-axis anchor. Keep U if it is already on."""
+    """Drop the X flag on the polar-axis anchor and on Nd sharing that site."""
     for atom in phase.atoms():
-        if atom.label != ORIGIN_ANCHOR:
+        if atom.label not in (ORIGIN_ANCHOR, ND_SITE):
             continue
         kept = "".join(c for c in str(atom.refinement_flags) if c not in "X ")
         atom.refinement_flags = kept if kept else " "
+
+
+def set_nominal_nd(phase, fraction):
+    """Place Nd on the Bi site at a fixed fraction. Occupancy is not refined.
+
+    Bi and Nd stay at (0, 0, 0). The caller ties the two Uiso values.
+    """
+    x = float(fraction)
+    if not 0.0 < x < 1.0:
+        raise ValueError("Nd fraction must be between 0 and 1, got %s" % fraction)
+    bi = phase.atom(ORIGIN_ANCHOR)
+    if bi is None:
+        raise ValueError("phase has no Bi1 site")
+    bi.occupancy = 1.0 - x
+    bi.coordinates = (0.0, 0.0, 0.0)
+    bi.refinement_flags = "U"
+    nd = phase.atom(ND_SITE)
+    if nd is None:
+        nd = phase.add_atom(0.0, 0.0, 0.0, "Nd+3", ND_SITE, occ=x, uiso=float(bi.uiso))
+    nd.occupancy = x
+    nd.coordinates = (0.0, 0.0, 0.0)
+    nd.uiso = float(bi.uiso)
+    nd.refinement_flags = "U"
+    return nd
+
+
+def hold_negative_uiso(phase, floor=0.005):
+    """Stop refining Uiso values that went negative. Set them to a small positive floor."""
+    held = []
+    for atom in phase.atoms():
+        if float(atom.uiso) >= 0.0001:
+            continue
+        atom.uiso = float(floor)
+        kept = "".join(c for c in str(atom.refinement_flags) if c != "U")
+        atom.refinement_flags = kept if kept.strip() else " "
+        held.append(atom.label)
+    return held
 
 
 def size_axial_is_refined(phase):

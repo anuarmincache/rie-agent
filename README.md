@@ -81,9 +81,11 @@ python src/agent.py data/samples/Nd2p5_850.xye data/samples/BFO.cif \
   --outdir results --label nd2p5_regress --no-llm
 ```
 
-That run finishes at array Rwp 9.85, GOF 1.78 and VERDICT OK.
+That run finishes at array Rwp 9.85, GOF 1.78 and VERDICT OK. It passes validation, so the planner is not called.
 
-The same frozen instrument on Nd 5% (`data/samples/Nd5_870.xye`, pure BiFeO₃) finishes at Rwp 10.13, GOF 1.78 and VERDICT OK. On Nd 10% (`data/samples/Nd10_830.xye`) the pure BiFeO₃ control reaches Rwp 11.07 with negative Fe and O Uiso. Nominal occupancy Bi 0.90 and Nd 0.10, coordinates fixed and Uiso tied, is in [`tools/nd10_nominal.py`](tools/nd10_nominal.py) and finishes at Rwp 10.64, GOF 2.02 and VERDICT OK.
+On a sample that fails validation, `src/agent.py` asks local Ollama (`qwen2.5:7b`) for one action from a fixed menu. Before choosing, the planner reads `results/run_memory.json`: Nd fraction, Rwp, verdict, and which actions were kept or rejected on earlier samples. The menu includes `nominal_nd` when the Nd fraction is given with `--nd` or is readable from the filename (`Nd10`, `Nd2p5`), and one `phase_` action per CIF in `data/phases/`. The model does not edit parameters. Validators roll back an action that does not improve the array Rwp; a secondary phase is kept only when Rwp drops by at least 0.20. `--no-llm` uses the same menu through the rule fallback. The 9.94 ceiling is applied only to the Nd 2.5% regression.
+
+The same frozen instrument on Nd 5% (`data/samples/Nd5_870.xye`, pure BiFeO₃) finishes at Rwp 10.13, GOF 1.78 and VERDICT OK. On Nd 10% the pure BiFeO₃ control reaches Rwp 11.07 with negative Fe and O Uiso. With Ollama choosing the actions, the agent sets Bi 0.90 / Nd 0.10 (`Nd+3`) and, if oxygen Uiso is still negative, holds it. That run finishes at Rwp 10.91, GOF 2.07 and VERDICT OK (`results/nd10_auto.gpx`).
 
 For secondary-phase screening, see [`src/phase_hunter.py`](src/phase_hunter.py) and its usage documentation.
 

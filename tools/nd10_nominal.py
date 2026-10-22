@@ -33,7 +33,7 @@ hist = gpx.histogram(0)
 bi = phase.atom("Bi1")
 bi.occupancy = 0.90
 bi.refinement_flags = "U"
-nd = phase.add_atom(0.0, 0.0, 0.0, "Nd3+", "Nd1", occ=0.10, uiso=float(bi.uiso))
+nd = phase.add_atom(0.0, 0.0, 0.0, "Nd+3", "Nd1", occ=0.10, uiso=float(bi.uiso))
 nd.refinement_flags = "U"
 nd.coordinates = (0.0, 0.0, 0.0)
 freeze_instrument(hist, FIXED_PROFILE)

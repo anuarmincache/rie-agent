@@ -126,11 +126,12 @@ def check_locks(gpx, rep):
     seen_anchor = False
     for ph in gpx.phases():
         for atom in ph.atoms():
-            if atom.label != ORIGIN_ANCHOR:
-                continue
-            seen_anchor = True
             flags = str(atom.refinement_flags)
-            rep.add("bi1_origin", "X" not in flags, f"Bi1 flags={flags!r}")
+            if atom.label == ORIGIN_ANCHOR:
+                seen_anchor = True
+                rep.add("bi1_origin", "X" not in flags, f"Bi1 flags={flags!r}")
+            elif atom.label == "Nd1":
+                rep.add("nd1_origin", "X" not in flags, f"Nd1 flags={flags!r}")
         if size_axial_is_refined(ph):
             x_on = "X" in inst and len(inst["X"]) > 2 and bool(inst["X"][2])
             rep.add("size_x_alias", not x_on,
