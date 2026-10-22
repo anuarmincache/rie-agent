@@ -19,6 +19,10 @@ import numpy as np
 
 ORIGIN_ANCHOR = "Bi1"
 FROZEN_AFTER_PROFILE = ("V", "Y", "SH/L")
+# Held when the instprm already carries the Nd2.5 hand refinement.
+# X and Y are included because the validated size model was refined
+# against those held values. They are not a Si/LaB6 calibration.
+FIXED_PROFILE = ("U", "V", "W", "X", "Y", "Zero", "SH/L")
 BG_FINAL = 18
 SIZE_AXIS = (0, 0, 1)
 SIZE_EQUATORIAL_UM = 10.0
@@ -41,6 +45,16 @@ STAGES = [
     "preferred_orientation",
     "uniaxial_size",
     "release_y",
+]
+
+SAMPLE_STAGES = [
+    "scale_background",
+    "lattice",
+    "atomic_positions",
+    "thermal",
+    "background_18",
+    "preferred_orientation",
+    "uniaxial_size",
 ]
 
 REMEDIATIONS = [
@@ -101,11 +115,14 @@ def size_axial_is_refined(phase):
     return False
 
 
-def enforce_locks(hist, phase):
+def enforce_locks(hist, phase, fixed_instrument=False):
     """Flags that must be off at the end of every stage."""
-    freeze_instrument(hist, FROZEN_AFTER_PROFILE)
-    if size_axial_is_refined(phase):
-        freeze_instrument(hist, ("X",))
+    if fixed_instrument:
+        freeze_instrument(hist, FIXED_PROFILE)
+    else:
+        freeze_instrument(hist, FROZEN_AFTER_PROFILE)
+        if size_axial_is_refined(phase):
+            freeze_instrument(hist, ("X",))
     pin_origin(phase)
 
 

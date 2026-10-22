@@ -1,0 +1,49 @@
+{
+  "label": "nd2p5_regress",
+  "started": "2026-10-21T21:12:39.424124",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 34.127531312339734,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 12.34982007994329,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 12.171568317685887,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 11.919279800982343,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 10.547569352135186,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 10.394105929042114,
+      "accepted": true
+    },
+    {
+      "stage": "uniaxial_size",
+      "Rwp": 9.85154604841408,
+      "accepted": true
+    }
+  ],
+  "remediations": [],
+  "rwp_ceiling": 9.94,
+  "fixed_instrument": true,
+  "final_rwp": 9.85154604841408,
+  "final_gof": 1.775307019325246,
+  "verdict_ok": true,
+  "meets_ceiling": true,
+  "finished": "2026-10-21T21:12:46.313928"
+}

@@ -73,3 +73,9 @@ encoded in code. The agent's remediation table should grow from this log.
 **Result:** `python src/agent.py` on Nd2p5_850.xye, BFO.cif and cuka_lab.instprm with `--no-llm --label nd2p5_auto` finishes at array Rwp 10.40, GOF 1.87, VERDICT OK. The hand-tuned project remains at Rwp 9.84. Same locks, a different profile minimum.
 **Rule for the agent:** Run that Nd2.5 command before any new sample. Do not hand the agent a sample when that command fails VERDICT OK.
 
+## 2026-10-21 — Provisional instrument from the hand refinement
+**Symptom:** The from-scratch agent and the hand project land in different profile minima (Rwp 10.40 vs 9.84). There is no Si or LaB6 scan in the repo.
+**Action:** Wrote `data/instrument/shimadzu_nd_provisorio.instprm` from the refined values in `results/agent_llm.gpx` (Zero, U, V, W, X, Y, SH/L). A name containing `provisorio` makes the agent skip the profile stages and hold those parameters fixed. Sample stages still run: scale, cell, coordinates with Bi1 pinned, Uiso, 18-term background, March-Dollase [001], uniaxial size [001].
+**Result:** `--label nd2p5_regress --no-llm` finishes at array Rwp 9.85, GOF 1.78, VERDICT OK, under the ceiling 9.94.
+**Rule for the agent:** Use this instprm for the next composition. It is a transfer of the Nd2.5 hand fit, not a certified instrument calibration. X and Y stay in the file because the size model was refined against them.
+

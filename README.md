@@ -47,6 +47,7 @@ Powder diffraction + CIF + instrument parameters
 
 | Component | Responsibility | Source |
 | --- | --- | --- |
+| Lab recipe | Stage order and locks for the BiFeO₃ lab scan: Bi1 origin, profile terms, uniaxial size | [`src/recipe.py`](src/recipe.py) |
 | Staged refinement | Scale/background, cell, profile, atomic positions and thermal parameters | [`src/refine_staged.py`](src/refine_staged.py) |
 | Agent orchestration | Stage progression, checkpoint/rollback and remediation; local Ollama or rule-based fallback | [`src/agent.py`](src/agent.py) |
 | Physical validation | Explicit checks on refinement quality and physical parameter constraints | [`src/validators.py`](src/validators.py) |
@@ -71,6 +72,16 @@ python src/agent.py DATA.xye PHASE.cif INSTRUMENT.instprm --outdir results --lab
 ```
 
 For a rule-only run without Ollama, append `--no-llm`. Replace the example filenames with your own compatible diffraction, CIF and instrument files. This command is a development entry point, not a guarantee of convergence.
+
+The Nd2.5 regression uses a provisional instrument transferred from the hand refinement in `results/agent_llm.gpx`. It is a transfer of that fit, not a Si or LaB₆ calibration. A filename containing `provisorio`, or the flag `--fixed-instrument`, holds U, V, W, X, Y, Zero and SH/L fixed while the sample parameters still refine.
+
+```bash
+python src/agent.py data/samples/Nd2p5_850.xye data/samples/BFO.cif \
+  data/instrument/shimadzu_nd_provisorio.instprm \
+  --outdir results --label nd2p5_regress --no-llm
+```
+
+That run finishes at array Rwp 9.85, GOF 1.78 and VERDICT OK.
 
 For secondary-phase screening, see [`src/phase_hunter.py`](src/phase_hunter.py) and its usage documentation.
 

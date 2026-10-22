@@ -1,0 +1,15 @@
+#GSAS-II instrument parameter file; provisional transfer from results/agent_llm.gpx, not a Si/LaB6 standard; do not add/delete items!
+Type: PXC
+Bank: 1
+Lam1: 1.540596
+Lam2: 1.544493
+I(L2)/I(L1): 0.5
+Zero: 0.06168003696431503
+Polariz.: 0.7
+U: 59.18567335299329
+V: -100.05020692626012
+W: 37.64008353278066
+X: 3.976715615024245
+Y: 9.82734652997328
+Z: 0.0
+SH/L: 0.03366548311910825

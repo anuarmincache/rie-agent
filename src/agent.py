@@ -21,9 +21,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from GSASII import GSASIIscriptable as G2sc
 from validators import validate
 from recipe import (
-    STAGES, REMEDIATIONS, MAX_CYCLES, PROFILE_CYCLES, RWP_CEILING,
+    STAGES, SAMPLE_STAGES, REMEDIATIONS, MAX_CYCLES, PROFILE_CYCLES, RWP_CEILING,
     apply_stage, enforce_locks, pin_origin, drop_correlated, reopen_zero,
-    rwp_from_data, gof_stored,
+    freeze_instrument, FIXED_PROFILE, rwp_from_data, gof_stored,
 )
 
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
@@ -35,13 +35,14 @@ def set_cycles(gpx, n):
     gpx.data["Controls"]["data"]["max cyc"] = int(n)
 
 
-def refine(gpx):
-    """Refine, then freeze V, Y and SH/L. The freeze happens after the cycle,
-    so a stage that just turned one of them on still gets that one cycle.
+def refine(gpx, fixed_instrument=False):
+    """Refine, then re-apply the locks. The freeze happens after the cycle,
+    so a stage that just turned a parameter on still gets that one cycle.
+    With a fixed instrument, U, V, W, X, Y, Zero and SH/L stay off.
     """
     pin_origin(gpx.phase(0))
     gpx.do_refinements([{}])
-    enforce_locks(gpx.histogram(0), gpx.phase(0))
+    enforce_locks(gpx.histogram(0), gpx.phase(0), fixed_instrument=fixed_instrument)
     gpx.save()
 
 
@@ -50,7 +51,7 @@ def reload(path):
     return gpx, gpx.histogram(0), gpx.phase(0)
 
 
-def apply_remediation(gpx, hist, phase, action, report):
+def apply_remediation(gpx, hist, phase, action, report, fixed_instrument=False):
     if action == "fix_correlated_params":
         frozen = drop_correlated(hist, report)
         print(f"  froze correlated params: {frozen or 'none'}")
@@ -62,7 +63,7 @@ def apply_remediation(gpx, hist, phase, action, report):
         print(f"  applied {action}")
     else:
         raise ValueError("unknown remediation: " + str(action))
-    refine(gpx)
+    refine(gpx, fixed_instrument=fixed_instrument)
 
 
 def rule_planner(report, tried):
@@ -120,8 +121,13 @@ def plan_next(report, tried, history, use_llm=True):
     return action
 
 
-def run_agent(data_file, cif_file, instprm, outdir, label="run", use_llm=True):
+def run_agent(data_file, cif_file, instprm, outdir, label="run", use_llm=True,
+              fixed_instrument=False):
     os.makedirs(outdir, exist_ok=True)
+    fixed_instrument = bool(fixed_instrument) or (
+        "provisorio" in os.path.basename(instprm).lower()
+    )
+    stages = SAMPLE_STAGES if fixed_instrument else STAGES
     gpx_path = os.path.join(outdir, f"{label}.gpx")
     log = {
         "label": label,
@@ -129,24 +135,27 @@ def run_agent(data_file, cif_file, instprm, outdir, label="run", use_llm=True):
         "base_stages": [],
         "remediations": [],
         "rwp_ceiling": RWP_CEILING,
+        "fixed_instrument": fixed_instrument,
     }
 
     gpx = G2sc.G2Project(newgpx=gpx_path)
     hist = gpx.add_powder_histogram(data_file, instprm)
     phase = gpx.add_phase(cif_file, phasename="BiFeO3", histograms=[hist])
     set_cycles(gpx, MAX_CYCLES)
+    if fixed_instrument:
+        freeze_instrument(hist, FIXED_PROFILE)
     hist.set_refinements({"Background": {"no. coeffs": 6, "refine": True}})
     gpx.save()
 
     prev_rwp = None
-    for stage in STAGES:
+    for stage in stages:
         ckpt = os.path.join(outdir, f"{label}_ckpt_{stage}.gpx")
         shutil.copy(gpx_path, ckpt)
         gpx, hist, phase = reload(gpx_path)
         set_cycles(gpx, PROFILE_CYCLES if stage == "profile" else MAX_CYCLES)
         apply_stage(hist, phase, stage)
         print(f"[stage] {stage}")
-        refine(gpx)
+        refine(gpx, fixed_instrument=fixed_instrument)
         if stage == "asymmetry":
             gpx, hist, phase = reload(gpx_path)
             reopen_zero(hist)
@@ -186,7 +195,10 @@ def run_agent(data_file, cif_file, instprm, outdir, label="run", use_llm=True):
         shutil.copy(gpx_path, ckpt)
         before = rwp_from_data(gpx)
         print(f"[remediate] {action}")
-        apply_remediation(gpx, hist, phase, action, {"checks": rep.checks})
+        apply_remediation(
+            gpx, hist, phase, action, {"checks": rep.checks},
+            fixed_instrument=fixed_instrument,
+        )
         gpx, hist, phase = reload(gpx_path)
         after = rwp_from_data(gpx)
         improved = after is not None and before is not None and after <= before + 0.02
@@ -231,5 +243,12 @@ if __name__ == "__main__":
     ap.add_argument("--outdir", default="results")
     ap.add_argument("--label", default="run")
     ap.add_argument("--no-llm", action="store_true", help="rules only, no Ollama")
+    ap.add_argument(
+        "--fixed-instrument", action="store_true",
+        help="do not refine U V W X Y Zero SH/L (also implied by *provisorio*.instprm)",
+    )
     a = ap.parse_args()
-    run_agent(a.data, a.cif, a.instprm, a.outdir, a.label, use_llm=not a.no_llm)
+    run_agent(
+        a.data, a.cif, a.instprm, a.outdir, a.label,
+        use_llm=not a.no_llm, fixed_instrument=a.fixed_instrument,
+    )
