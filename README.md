@@ -89,6 +89,18 @@ The same frozen instrument on Nd 5% (`data/samples/Nd5_870.xye`, pure BiFeO₃) 
 
 For secondary-phase screening, see [`src/phase_hunter.py`](src/phase_hunter.py) and its usage documentation.
 
+## Where the fits stand
+
+Both figures use array Rwp from the runs in [`results/`](results/). The stored covariance Rwp is not plotted.
+
+<img src="assets/nd25-agent-gap.svg" alt="Nd 2.5 percent: from-scratch agent at Rwp 10.40, frozen-instrument agent at 9.85, hand fit at 9.84" width="100%" />
+
+On the Nd 2.5% scan the from-scratch agent stops at 10.40, above the 9.94 ceiling. Freezing the profile taken from the hand fit brings the same recipe to 9.85, beside the hand result at 9.84.
+
+<img src="assets/nd-series-rwp.svg" alt="R3c Rwp from Nd 2.5 percent at 9.85 to Nd 20 percent at 21.64, with rejected orthorhombic trials near 17 at 15 percent" width="100%" />
+
+With that instrument held fixed, the R3c model stays near Rwp 10 through 10% Nd (9.85, 10.13, 10.91), all VERDICT OK. At 15% it is 12.61 and still beats the Pnma trial at 16.97 and the Pbam trial at 16.95. At 20% the same R3c model reaches 21.64.
+
 ## Research scope and maturity
 
 Current development centers on **Bi₁₋ₓNdₓFeO₃** and laboratory powder X-ray diffraction. Neutron powder diffraction is part of the broader intended scope. The [roadmap](docs/ROADMAP.md) marks staged refinement, validators, agent orchestration and secondary-phase screening as completed development sprints, with **benchmarking currently in progress**. Visualization, publication and release milestones remain planned.
