@@ -1,49 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1080" height="520" viewBox="0 0 1080 520">
   <rect width="1080" height="520" rx="18" fill="#101a33"/>
-  <text x="48" y="52" fill="#ffffff" font-size="28" font-family="Arial, sans-serif" font-weight="bold">Nd 2.5%  same scan, three fits</text>
-  <text x="48" y="84" fill="#a6d7ed" font-size="16" font-family="Arial, sans-serif">Array Rwp. Lower is closer to the measured pattern. The axis starts at 9.4.</text>
-
-  <!-- plot frame -->
-  <line x1="120" y1="120" x2="120" y2="390" stroke="#35557a" stroke-width="1.5"/>
+  <text x="48" y="52" fill="#ffffff" font-size="28" font-family="Arial,sans-serif" font-weight="bold">Nd 2.5%: same scan, three fits</text>
+  <text x="48" y="84" fill="#a6d7ed" font-size="16" font-family="Arial,sans-serif">Array Rwp. Lower is closer to the measured pattern. The axis starts at 9.4.</text>
+  <text x="48" y="112" fill="#8fb4cc" font-size="14" font-family="Arial,sans-serif">Rwp</text>
+  <line x1="120" y1="130" x2="120" y2="390" stroke="#35557a" stroke-width="1.5"/>
   <line x1="120" y1="390" x2="1000" y2="390" stroke="#35557a" stroke-width="1.5"/>
-
-  <!-- y grid: 9.4, 9.8, 10.2, 10.6 -->
   <g stroke="#24385c" stroke-width="1">
     <line x1="120" y1="390" x2="1000" y2="390"/>
-    <line x1="120" y1="306.9" x2="1000" y2="306.9"/>
-    <line x1="120" y1="223.8" x2="1000" y2="223.8"/>
-    <line x1="120" y1="140.8" x2="1000" y2="140.8"/>
+    <line x1="120" y1="310" x2="1000" y2="310"/>
+    <line x1="120" y1="230" x2="1000" y2="230"/>
+    <line x1="120" y1="150" x2="1000" y2="150"/>
   </g>
-  <g fill="#8fb4cc" font-size="14" font-family="Arial, sans-serif" text-anchor="end">
+  <g fill="#8fb4cc" font-size="14" font-family="Arial,sans-serif" text-anchor="end">
     <text x="108" y="394">9.4</text>
-    <text x="108" y="311">9.8</text>
-    <text x="108" y="228">10.2</text>
-    <text x="108" y="145">10.6</text>
+    <text x="108" y="314">9.8</text>
+    <text x="108" y="234">10.2</text>
+    <text x="108" y="154">10.6</text>
   </g>
-  <text x="36" y="270" fill="#8fb4cc" font-size="14" font-family="Arial, sans-serif" transform="rotate(-90 36 270)">Rwp</text>
-
-  <!-- ceiling 9.94: y = 390 - (9.94-9.4)/1.3*270 = 277.8 -->
-  <line x1="120" y1="277.8" x2="1000" y2="277.8" stroke="#f2c14e" stroke-width="1.5" stroke-dasharray="7 6"/>
-  <text x="990" y="270" fill="#f2c14e" font-size="14" font-family="Arial, sans-serif" text-anchor="end">Nd 2.5% ceiling 9.94</text>
-
-  <!-- bars. height = (v-9.4)/1.3*270. y = 390 - height -->
-  <!-- from scratch 10.40, h=207.7, y=182.3 -->
-  <rect x="200" y="182.3" width="150" height="207.7" rx="6" fill="#5b8fb8"/>
-  <text x="275" y="170" fill="#ffffff" font-size="22" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">10.40</text>
-  <text x="275" y="424" fill="#e0eaf2" font-size="16" font-family="Arial, sans-serif" text-anchor="middle">From scratch</text>
-  <text x="275" y="446" fill="#8fb4cc" font-size="13" font-family="Arial, sans-serif" text-anchor="middle">instrument free</text>
-
-  <!-- frozen 9.85, h=93.5, y=296.5 -->
-  <rect x="465" y="296.5" width="150" height="93.5" rx="6" fill="#3ecfb2"/>
-  <text x="540" y="284" fill="#ffffff" font-size="22" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">9.85</text>
-  <text x="540" y="424" fill="#e0eaf2" font-size="16" font-family="Arial, sans-serif" text-anchor="middle">Agent</text>
-  <text x="540" y="446" fill="#8fb4cc" font-size="13" font-family="Arial, sans-serif" text-anchor="middle">instrument held</text>
-
-  <!-- hand 9.84, h=91.4, y=298.6 -->
-  <rect x="730" y="298.6" width="150" height="91.4" rx="6" fill="#f2c14e"/>
-  <text x="805" y="286" fill="#ffffff" font-size="22" font-family="Arial, sans-serif" font-weight="bold" text-anchor="middle">9.84</text>
-  <text x="805" y="424" fill="#e0eaf2" font-size="16" font-family="Arial, sans-serif" text-anchor="middle">Hand fit</text>
-  <text x="805" y="446" fill="#8fb4cc" font-size="13" font-family="Arial, sans-serif" text-anchor="middle">reference</text>
-
-  <text x="48" y="492" fill="#8fb4cc" font-size="14" font-family="Arial, sans-serif">Holding the hand-refined profile fixed closed the 0.56 gap. The 9.94 bar applies only to this composition.</text>
+  <line x1="120" y1="282" x2="1000" y2="282" stroke="#f2c14e" stroke-width="1.5" stroke-dasharray="7 6"/>
+  <text x="990" y="274" fill="#f2c14e" font-size="14" font-family="Arial,sans-serif" text-anchor="end">Nd 2.5% ceiling 9.94</text>
+  <rect x="200" y="190" width="150" height="200" rx="6" fill="#5b8fb8"/>
+  <text x="275" y="178" fill="#ffffff" font-size="22" font-family="Arial,sans-serif" font-weight="bold" text-anchor="middle">10.40</text>
+  <text x="275" y="424" fill="#e0eaf2" font-size="16" font-family="Arial,sans-serif" text-anchor="middle">From scratch</text>
+  <text x="275" y="446" fill="#8fb4cc" font-size="13" font-family="Arial,sans-serif" text-anchor="middle">instrument free</text>
+  <rect x="465" y="300" width="150" height="90" rx="6" fill="#3ecfb2"/>
+  <text x="540" y="288" fill="#ffffff" font-size="22" font-family="Arial,sans-serif" font-weight="bold" text-anchor="middle">9.85</text>
+  <text x="540" y="424" fill="#e0eaf2" font-size="16" font-family="Arial,sans-serif" text-anchor="middle">Agent</text>
+  <text x="540" y="446" fill="#8fb4cc" font-size="13" font-family="Arial,sans-serif" text-anchor="middle">instrument held</text>
+  <rect x="730" y="302" width="150" height="88" rx="6" fill="#f2c14e"/>
+  <text x="805" y="290" fill="#101a33" font-size="22" font-family="Arial,sans-serif" font-weight="bold" text-anchor="middle">9.84</text>
+  <text x="805" y="424" fill="#e0eaf2" font-size="16" font-family="Arial,sans-serif" text-anchor="middle">Hand fit</text>
+  <text x="805" y="446" fill="#8fb4cc" font-size="13" font-family="Arial,sans-serif" text-anchor="middle">reference</text>
+  <text x="48" y="492" fill="#8fb4cc" font-size="14" font-family="Arial,sans-serif">Holding the hand-refined profile fixed closed the 0.56 gap. The 9.94 bar applies only to this composition.</text>
 </svg>
