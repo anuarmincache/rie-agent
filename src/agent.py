@@ -5,6 +5,10 @@ remediation actions chosen by a planner. The planner is an LLM (Ollama,
 local) when available; otherwise a built-in rule-based fallback.
 Deterministic validators always have the final say (accept/reject/rollback).
 
+The numerical recipe and the locks live in recipe.py. The LLM may only
+pick a name from that list. It cannot free Bi1, V, Y, SH/L, or instrument
+X while axial size is refined.
+
 Usage:
     python agent.py DATA.xye PHASE.cif INSTPRM --outdir results --label RUN
     python agent.py ... --no-llm        # rules only, no Ollama needed
@@ -16,75 +20,67 @@ sys.path.insert(0, GSASII_PATH)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from GSASII import GSASIIscriptable as G2sc
 from validators import validate
+from recipe import (
+    STAGES, REMEDIATIONS, MAX_CYCLES, PROFILE_CYCLES, RWP_CEILING,
+    apply_stage, enforce_locks, pin_origin, drop_correlated, reopen_zero,
+    rwp_from_data, gof_stored,
+)
 
-BASE_STAGES = ["scale_background", "lattice", "profile_uvw",
-               "profile_xy", "atomic_positions", "thermal"]
-REMEDIATIONS = ["fix_correlated_params", "preferred_orientation_md",
-                "more_background", "refine_shl", "refine_zero"]
-MAX_REMEDIATIONS = 8
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
+MAX_REMEDIATIONS = 6
 
-# ---------------- refinement primitives ----------------
 
-def apply_stage(gpx, hist, phase, stage):
-    if stage == "scale_background":
-        hist.set_refinements({"Sample Parameters": ["Scale"],
-                              "Background": {"no. coeffs": 6, "refine": True}})
-    elif stage == "lattice":
-        phase.set_refinements({"Cell": True})
-    elif stage == "profile_uvw":
-        hist.set_refinements({"Instrument Parameters": ["U", "V", "W"]})
-    elif stage == "profile_xy":
-        hist.set_refinements({"Instrument Parameters": ["U", "V", "W", "X", "Y"]})
-    elif stage == "atomic_positions":
-        phase.set_refinements({"Atoms": {"all": "X"}})
-    elif stage == "thermal":
-        phase.set_refinements({"Atoms": {"all": "XU"}})
-    gpx.do_refinements(refinements=[{}])
+def set_cycles(gpx, n):
+    gpx.data["Controls"]["data"]["max cyc"] = int(n)
+
+
+def refine(gpx):
+    """Refine, then freeze V, Y and SH/L. The freeze happens after the cycle,
+    so a stage that just turned one of them on still gets that one cycle.
+    """
+    pin_origin(gpx.phase(0))
+    gpx.do_refinements([{}])
+    enforce_locks(gpx.histogram(0), gpx.phase(0))
+    gpx.save()
+
+
+def reload(path):
+    gpx = G2sc.G2Project(gpxfile=path)
+    return gpx, gpx.histogram(0), gpx.phase(0)
+
 
 def apply_remediation(gpx, hist, phase, action, report):
     if action == "fix_correlated_params":
-        drops = set()
-        for c in report["checks"]:
-            if c["check"] == "param_correlations" and c["detail"]:
-                for pair in c["detail"].split(";"):
-                    names = [p.strip().split(":")[-1] for p in pair.split("=")[0].split("x")]
-                    if len(names) == 2:
-                        drops.add(names[1])
-        keep = [p for p in ["U", "V", "W", "X", "Y", "SH/L"] if p not in drops]
-        hist.set_refinements({"Instrument Parameters": keep})
-        print(f"  fixed params: {sorted(drops)}; refining {keep}")
-    elif action == "preferred_orientation_md":
-        hname = list(phase.data["Histograms"].keys())[0]
-        phase.data["Histograms"][hname]["Pref.Ori."][2] = True
-        print("  enabled March-Dollase PO, axis [0,0,1]")
-    elif action == "more_background":
-        hist.set_refinements({"Background": {"no. coeffs": 12, "refine": True}})
-        print("  background -> 12 Chebyshev terms")
-    elif action == "refine_shl":
-        hist.set_refinements({"Instrument Parameters": ["U", "V", "W", "X", "Y", "SH/L"]})
-        print("  refining SH/L")
-    elif action == "refine_zero":
-        hist.set_refinements({"Instrument Parameters": ["Zero", "U", "V", "W", "X", "Y"]})
-        print("  refining zero shift")
-    gpx.do_refinements(refinements=[{}])
+        frozen = drop_correlated(hist, report)
+        print(f"  froze correlated params: {frozen or 'none'}")
+    elif action == "extra_cycles":
+        set_cycles(gpx, MAX_CYCLES * 2)
+        print(f"  max cycles -> {MAX_CYCLES * 2}")
+    elif action in ("preferred_orientation", "background_18", "uniaxial_size"):
+        apply_stage(hist, phase, action)
+        print(f"  applied {action}")
+    else:
+        raise ValueError("unknown remediation: " + str(action))
+    refine(gpx)
 
-# ---------------- planners ----------------
 
 def rule_planner(report, tried):
-    """Deterministic fallback planner: map failing checks to actions."""
-    fails = {c["check"]: c["detail"] for c in report["checks"] if c["status"] == "FAIL"}
+    """Map a failing check to one allowed action. Locks are not negotiable."""
+    fails = {c["check"] for c in report["checks"] if c["status"] == "FAIL"}
+    if fails & {"frozen_profile", "bi1_origin", "size_x_alias"}:
+        return None
     if "param_correlations" in fails and "fix_correlated_params" not in tried:
         return "fix_correlated_params"
-    if "svd_free" in fails and "preferred_orientation_md" not in tried:
-        return "preferred_orientation_md"
-    if "gof_reasonable" in fails and "more_background" not in tried:
-        return "more_background"
-    for a in REMEDIATIONS:
-        if a not in tried:
-            return a
+    if "profile_shifts" in fails and "extra_cycles" not in tried:
+        return "extra_cycles"
+    if "svd_free" in fails and "preferred_orientation" not in tried:
+        return "preferred_orientation"
+    for action in REMEDIATIONS:
+        if action not in tried:
+            return action
     return None
+
 
 def llm_planner(report, tried, history):
     """Ask local Ollama for the next action. Returns None if unavailable."""
@@ -99,72 +95,87 @@ def llm_planner(report, tried, history):
         + ". Reply with ONLY the action name."
     )
     try:
-        r = requests.post(f"{OLLAMA_URL}/api/generate",
-                          json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False},
-                          timeout=180)
+        r = requests.post(
+            f"{OLLAMA_URL}/api/generate",
+            json={"model": OLLAMA_MODEL, "prompt": prompt, "stream": False},
+            timeout=180,
+        )
         ans = r.json().get("response", "").strip().split()[0]
         return ans if ans in REMEDIATIONS else None
     except Exception as e:
         print(f"  (LLM unavailable: {e}; falling back to rules)")
         return None
 
+
 def plan_next(report, tried, history, use_llm=True):
     if use_llm:
-        a = llm_planner(report, tried, history)
-        if a and a not in tried:
-            print(f"  [planner: LLM/{OLLAMA_MODEL}] -> {a}")
-            return a
-        elif a:
-            print(f"  [planner: LLM repeated '{a}'; consulting rules]")
-    a = rule_planner(report, tried)
-    print(f"  [planner: rules] -> {a}")
-    return a
+        action = llm_planner(report, tried, history)
+        if action and action not in tried:
+            print(f"  [planner: LLM/{OLLAMA_MODEL}] -> {action}")
+            return action
+        if action:
+            print(f"  [planner: LLM repeated '{action}'; consulting rules]")
+    action = rule_planner(report, tried)
+    print(f"  [planner: rules] -> {action}")
+    return action
 
-# ---------------- main loop ----------------
-
-def get_rwp(gpx):
-    return gpx.data.get("Covariance", {}).get("data", {}).get("Rvals", {}).get("Rwp")
 
 def run_agent(data_file, cif_file, instprm, outdir, label="run", use_llm=True):
     os.makedirs(outdir, exist_ok=True)
     gpx_path = os.path.join(outdir, f"{label}.gpx")
-    log = {"label": label, "started": datetime.datetime.now().isoformat(),
-           "base_stages": [], "remediations": []}
+    log = {
+        "label": label,
+        "started": datetime.datetime.now().isoformat(),
+        "base_stages": [],
+        "remediations": [],
+        "rwp_ceiling": RWP_CEILING,
+    }
 
     gpx = G2sc.G2Project(newgpx=gpx_path)
     hist = gpx.add_powder_histogram(data_file, instprm)
     phase = gpx.add_phase(cif_file, phasename="BiFeO3", histograms=[hist])
+    set_cycles(gpx, MAX_CYCLES)
     hist.set_refinements({"Background": {"no. coeffs": 6, "refine": True}})
+    gpx.save()
 
-    # Phase 1: staged pipeline with checkpoints
     prev_rwp = None
-    for stage in BASE_STAGES:
+    for stage in STAGES:
         ckpt = os.path.join(outdir, f"{label}_ckpt_{stage}.gpx")
-        if os.path.exists(gpx_path):
-            shutil.copy(gpx_path, ckpt)
-        apply_stage(gpx, hist, phase, stage)
-        gpx.save()
-        rwp = get_rwp(gpx)
-        rep = validate(gpx_path, prev_rwp=prev_rwp)
-        ok_rwp = rwp is not None and (prev_rwp is None or rwp <= prev_rwp * 1.05)
-        print(f"[stage] {stage}: Rwp={rwp:.2f}")
-        log["base_stages"].append({"stage": stage, "Rwp": rwp, "accepted": ok_rwp})
+        shutil.copy(gpx_path, ckpt)
+        gpx, hist, phase = reload(gpx_path)
+        set_cycles(gpx, PROFILE_CYCLES if stage == "profile" else MAX_CYCLES)
+        apply_stage(hist, phase, stage)
+        print(f"[stage] {stage}")
+        refine(gpx)
+        if stage == "asymmetry":
+            gpx, hist, phase = reload(gpx_path)
+            reopen_zero(hist)
+            gpx.save()
+        gpx, hist, phase = reload(gpx_path)
+        rwp = rwp_from_data(gpx)
+        strict = stage in ("asymmetry", "release_y")
+        ok_rwp = rwp is not None and (prev_rwp is None or rwp <= prev_rwp * (1.0 if strict else 1.05))
+        print(f"  Rwp={rwp:.2f}" if rwp is not None else "  Rwp=None")
+        log["base_stages"].append({"stage": stage, "Rwp": rwp, "accepted": bool(ok_rwp)})
         if not ok_rwp:
-            print(f"  Rwp worsened ({prev_rwp} -> {rwp}); rolling back to checkpoint")
+            print(f"  Rwp worsened ({prev_rwp} -> {rwp}); rolling back")
             shutil.copy(ckpt, gpx_path)
-            gpx = G2sc.G2Project(gpxfile=gpx_path)
-            hist, phase = gpx.histogram(0), gpx.phase(0)
+            gpx, hist, phase = reload(gpx_path)
         else:
             prev_rwp = rwp
 
-    # Phase 2: remediation loop driven by validators + planner
     tried, history = [], []
+    verdict_ok = False
     for it in range(MAX_REMEDIATIONS):
-        gpx.save()
+        gpx, hist, phase = reload(gpx_path)
         rep = validate(gpx_path)
         n_fail = sum(1 for c in rep.checks if c["status"] == "FAIL")
         print(f"[validate] iteration {it}: {n_fail} failing checks")
+        for c in rep.checks:
+            if c["status"] == "FAIL":
+                print(f"  FAIL {c['check']}: {c['detail']}")
         if rep.ok:
+            verdict_ok = True
             print("VALIDATION OK - refinement accepted.")
             break
         action = plan_next({"checks": rep.checks}, tried, history, use_llm)
@@ -173,33 +184,50 @@ def run_agent(data_file, cif_file, instprm, outdir, label="run", use_llm=True):
             break
         ckpt = os.path.join(outdir, f"{label}_ckpt_rem{it}.gpx")
         shutil.copy(gpx_path, ckpt)
-        before = get_rwp(gpx)
+        before = rwp_from_data(gpx)
         print(f"[remediate] {action}")
         apply_remediation(gpx, hist, phase, action, {"checks": rep.checks})
-        gpx.save()
-        after = get_rwp(gpx)
-        improved = after is not None and after <= before * 1.02
+        gpx, hist, phase = reload(gpx_path)
+        after = rwp_from_data(gpx)
+        improved = after is not None and before is not None and after <= before + 0.02
         print(f"  Rwp {before:.2f} -> {after:.2f} ({'accepted' if improved else 'ROLLBACK'})")
         if not improved:
             shutil.copy(ckpt, gpx_path)
-            gpx = G2sc.G2Project(gpxfile=gpx_path)
-            hist, phase = gpx.histogram(0), gpx.phase(0)
+            gpx, hist, phase = reload(gpx_path)
+            after = before
         tried.append(action)
-        history.append({"action": action, "rwp_before": float(before), "rwp_after": float(after),
-                        "accepted": bool(improved)})
+        history.append({
+            "action": action,
+            "rwp_before": None if before is None else float(before),
+            "rwp_after": None if after is None else float(after),
+            "accepted": bool(improved),
+        })
         log["remediations"] = history
 
-    gpx.save()
-    log["final_rwp"] = get_rwp(gpx)
+    gpx, hist, phase = reload(gpx_path)
+    rep = validate(gpx_path)
+    verdict_ok = rep.ok
+    final_rwp = rwp_from_data(gpx)
+    log["final_rwp"] = final_rwp
+    log["final_gof"] = gof_stored(gpx)
+    log["verdict_ok"] = bool(verdict_ok)
+    log["meets_ceiling"] = final_rwp is not None and final_rwp <= RWP_CEILING and verdict_ok
     log["finished"] = datetime.datetime.now().isoformat()
     with open(os.path.join(outdir, f"{label}_agent_log.json"), "w") as f:
         json.dump(log, f, indent=2, default=str)
-    print("Saved:", gpx_path, "| final Rwp:", round(log["final_rwp"], 2))
+    print(
+        f"Saved: {gpx_path} | Rwp={None if final_rwp is None else round(final_rwp, 2)} "
+        f"| GOF={log['final_gof']} | VERDICT={'OK' if verdict_ok else 'FAIL'} "
+        f"| ceiling {RWP_CEILING}: {'MET' if log['meets_ceiling'] else 'MISSED'}"
+    )
     return log
+
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("data"); ap.add_argument("cif"); ap.add_argument("instprm")
+    ap.add_argument("data")
+    ap.add_argument("cif")
+    ap.add_argument("instprm")
     ap.add_argument("--outdir", default="results")
     ap.add_argument("--label", default="run")
     ap.add_argument("--no-llm", action="store_true", help="rules only, no Ollama")

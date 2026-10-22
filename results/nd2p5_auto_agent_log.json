@@ -1,0 +1,63 @@
+{
+  "label": "nd2p5_auto",
+  "started": "2026-10-21T20:56:20.480064",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 59.68427882423275,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 45.60555444755167,
+      "accepted": true
+    },
+    {
+      "stage": "profile",
+      "Rwp": 12.641832409954255,
+      "accepted": true
+    },
+    {
+      "stage": "asymmetry",
+      "Rwp": 12.627089426324996,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 12.452327041611634,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 12.27450126287234,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 10.952184042933533,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 10.8111054115926,
+      "accepted": true
+    },
+    {
+      "stage": "uniaxial_size",
+      "Rwp": 10.436663367582906,
+      "accepted": true
+    },
+    {
+      "stage": "release_y",
+      "Rwp": 10.396338608343028,
+      "accepted": true
+    }
+  ],
+  "remediations": [],
+  "rwp_ceiling": 9.94,
+  "final_rwp": 10.396338608343028,
+  "final_gof": 1.873794951205533,
+  "verdict_ok": true,
+  "meets_ceiling": false,
+  "finished": "2026-10-21T20:56:32.213942"
+}

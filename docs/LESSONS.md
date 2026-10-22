@@ -66,3 +66,10 @@ encoded in code. The agent's remediation table should grow from this log.
 **Action:** On copies, refined Shift alone, Transparency alone, and SurfRoughA+B alone, with every other flag cleared.
 **Result:** Shift and Transparency: no gain, rejected (delta Rwp about 0). SurfRoughA/B: VERDICT FAIL (100% correlation, SVD0=1).
 **Rule for the agent:** Do not refine Bragg-Brentano Shift, Transparency, or the surface-roughness pair on this histogram; Zero and the background already cover them.
+
+## 2026-10-21 — Locks promoted into the agent
+**Symptom:** agent.py still freed every atomic coordinate, refined V with W and SH/L with Zero, read the stored Rwp, and had no size action.
+**Action:** The lab recipe and the locks now live in src/recipe.py. Stages freeze Bi1 coordinates, freeze V and Y after the profile block, refine SH/L only with Zero held, then refine uniaxial size along [001] with equatorial size fixed and instrument X frozen. Acceptance uses Rwp from the pattern arrays. validators.py rejects a free Bi1, a free V/Y/SH/L, size refined together with X, and a last-cycle U or W shift/esd above 1.
+**Result:** `python src/agent.py` on Nd2p5_850.xye, BFO.cif and cuka_lab.instprm with `--no-llm --label nd2p5_auto` finishes at array Rwp 10.40, GOF 1.87, VERDICT OK. The hand-tuned project remains at Rwp 9.84. Same locks, a different profile minimum.
+**Rule for the agent:** Run that Nd2.5 command before any new sample. Do not hand the agent a sample when that command fails VERDICT OK.
+

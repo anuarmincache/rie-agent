@@ -11,7 +11,12 @@ from dataclasses import dataclass, field
 
 GSASII_PATH = os.environ.get("GSASII_PATH", os.path.expanduser("~/GSAS-II"))
 sys.path.insert(0, GSASII_PATH)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
+from recipe import (
+    FROZEN_AFTER_PROFILE, ORIGIN_ANCHOR, PROFILE_SHIFT_LIMIT,
+    size_axial_is_refined,
+)
 
 @dataclass
 class ValidationReport:
@@ -72,6 +77,25 @@ def check_correlations(gpx, rep):
     rep.add("param_correlations", len(worst) == 0,
             "; ".join(worst) if worst else f"no |corr| > {CORR_WARN}")
 
+def last_cycle_shift_over_esd(gpx):
+    """|shift|/esd of the last cycle. Max shft/sig is the worst cycle, not the last."""
+    cov = gpx.data.get("Covariance", {}).get("data", {})
+    vm, vl = cov.get("covMatrix"), cov.get("varyList")
+    shifts = (cov.get("Rvals") or {}).get("lastShifts")
+    if vm is None or vl is None or not isinstance(shifts, dict):
+        return None
+    vm = np.asarray(vm, dtype=float)
+    esd = np.sqrt(np.clip(np.diag(vm), 0, None))
+    out = {}
+    for i, name in enumerate(vl):
+        if i >= len(esd) or esd[i] <= 0 or name not in shifts:
+            continue
+        try:
+            out[name] = float(shifts[name]) / float(esd[i])
+        except (TypeError, ValueError):
+            continue
+    return out
+
 def check_convergence(gpx, rep):
     cov = gpx.data.get("Covariance", {}).get("data", {})
     rv = cov.get("Rvals", {})
@@ -80,6 +104,39 @@ def check_convergence(gpx, rep):
     rep.add("converged", bool(conv), f"converged={conv}, max shift/esd={sh}")
     svd0 = rv.get("SVD0", 0)
     rep.add("svd_free", svd0 == 0, f"SVD singularities={svd0}")
+    ratios = last_cycle_shift_over_esd(gpx)
+    if ratios is None:
+        rep.add("profile_shifts", False, "last-cycle shifts unavailable")
+        return
+    bad = []
+    for name, ratio in ratios.items():
+        if name.split(":")[-1] in ("U", "W") and abs(ratio) > PROFILE_SHIFT_LIMIT:
+            bad.append(f"{name}={ratio:.2f}")
+    rep.add("profile_shifts", len(bad) == 0,
+            "; ".join(bad) if bad else f"last-cycle |U,W shift/esd| <= {PROFILE_SHIFT_LIMIT}")
+
+def check_locks(gpx, rep):
+    """Bi1 is the polar origin. V, Y and SH/L stay frozen. Size does not ride with X."""
+    hist = gpx.histogram(0)
+    inst = hist.data["Instrument Parameters"][0]
+    free = [k for k in FROZEN_AFTER_PROFILE
+            if k in inst and isinstance(inst[k], list) and len(inst[k]) > 2 and bool(inst[k][2])]
+    rep.add("frozen_profile", len(free) == 0,
+            "free " + ", ".join(free) if free else "V, Y, SH/L frozen")
+    seen_anchor = False
+    for ph in gpx.phases():
+        for atom in ph.atoms():
+            if atom.label != ORIGIN_ANCHOR:
+                continue
+            seen_anchor = True
+            flags = str(atom.refinement_flags)
+            rep.add("bi1_origin", "X" not in flags, f"Bi1 flags={flags!r}")
+        if size_axial_is_refined(ph):
+            x_on = "X" in inst and len(inst["X"]) > 2 and bool(inst["X"][2])
+            rep.add("size_x_alias", not x_on,
+                    "X refined with axial size" if x_on else "X frozen while axial size refines")
+    if not seen_anchor:
+        rep.add("bi1_origin", True, "no Bi1 in this project")
 
 def validate(gpx_path, prev_rwp=None):
     gpx = load_project(gpx_path)
@@ -89,6 +146,7 @@ def validate(gpx_path, prev_rwp=None):
     check_occupancies(gpx, rep)
     check_correlations(gpx, rep)
     check_convergence(gpx, rep)
+    check_locks(gpx, rep)
     if prev_rwp is not None and rwp is not None:
         ok = rwp <= prev_rwp * (1 + RWP_WORSEN_TOL)
         rep.add("rwp_not_worse", ok, f"Rwp {prev_rwp:.2f} -> {rwp:.2f}")
