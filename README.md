@@ -91,6 +91,8 @@ For secondary-phase screening, see [`src/phase_hunter.py`](src/phase_hunter.py) 
 
 ## Where the fits stand
 
+> **Update, 24 Nov 2026 (revision of the J. Appl. Cryst. submission).** The series below was run with the transferred Zero and no sample displacement. When the displacement is refined with Zero held at 0, the same R3c model reaches Rwp 10.36 at 15% and 9.08 at 20%. The misfit at 15 and 20% was therefore a missing displacement, not evidence about the structure, and the orthorhombic trials reported below were built on that misfit. The new runs, logs and the explanation are in [`revisao-har5016/`](revisao-har5016/).
+
 Both figures use array Rwp from the runs in [`results/`](results/). The stored covariance Rwp is not plotted.
 
 <img src="assets/nd25-agent-gap.svg" alt="Nd 2.5 percent: from-scratch agent at Rwp 10.40, frozen-instrument agent at 9.85, hand fit at 9.84" width="100%" />
@@ -109,6 +111,7 @@ Current development centers on **Bi₁₋ₓNdₓFeO₃** and laboratory powder 
 
 - [`src/`](src/) — refinement, orchestration, validation and phase screening
 - [`data/`](data/) — research inputs and sample assets
+- [`revisao-har5016/`](revisao-har5016/) — new refinements for the revision (recipes A to D, logs, sensitivity, reproduction notes)
 - [`docs/SETUP.md`](docs/SETUP.md) — environment and installation notes
 - [`docs/DECISIONS.md`](docs/DECISIONS.md) — architectural decisions
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — completed and planned work

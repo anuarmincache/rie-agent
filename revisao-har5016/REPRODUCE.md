@@ -28,3 +28,6 @@ Tables and figures: `tabelas/make_tables.py`, `tabelas/make_figs.py` (they read 
 - `src/agent.py`: `--protocol`, `--gonio-radius`; the Bi/Nd Uiso tie is now saved (`gpx.save()`), which fixed a loss of the constraint on reload. The first-version numbers are unchanged by this fix.
 - `src/validators.py`: the size and microstrain correlation is reported and does not block acceptance.
 - `src/recipe.py`: optional `displacement` stage.
+
+## Projects
+`projetos_gsas/r1_x*.gpx` are the five final GSAS-II projects of recipe D (displacement refined, 12-start search). Intermediate checkpoints and the projects of recipes A to C are not included.
