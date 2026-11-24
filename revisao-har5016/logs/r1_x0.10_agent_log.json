@@ -1,0 +1,270 @@
+{
+  "label": "r1_x0.10",
+  "started": "2026-11-24T10:36:40.756808",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 53.55491294402987,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 49.013754684314975,
+      "accepted": true
+    },
+    {
+      "stage": "MULTISTART",
+      "Rwp": 16.818889563314027,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 16.559266602153485,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 16.409025273375466,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 9.300793677584979,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 9.257326226487773,
+      "accepted": true
+    },
+    {
+      "stage": "size_mustrain",
+      "Rwp": 9.257747814756767,
+      "accepted": true
+    }
+  ],
+  "remediations": [
+    {
+      "action": "hold_negative_uiso",
+      "rwp_before": 9.257747814756767,
+      "rwp_after": 9.257747814756767,
+      "accepted": false
+    },
+    {
+      "action": "fix_correlated_params",
+      "rwp_before": 9.257747814756767,
+      "rwp_after": 9.258016277219015,
+      "accepted": true
+    },
+    {
+      "action": "extra_cycles",
+      "rwp_before": 9.258016277219015,
+      "rwp_after": 9.257877418846107,
+      "accepted": true
+    },
+    {
+      "action": "preferred_orientation",
+      "rwp_before": 9.257877418846107,
+      "rwp_after": 9.25791456809045,
+      "accepted": true
+    },
+    {
+      "action": "background_18",
+      "rwp_before": 9.25791456809045,
+      "rwp_after": 9.257944394320738,
+      "accepted": true
+    },
+    {
+      "action": "phase_Bi25FeO40_I23",
+      "rwp_before": 9.257944394320738,
+      "rwp_after": 9.257944394320738,
+      "accepted": false
+    },
+    {
+      "action": "phase_Bi2Fe4O9_Pbam",
+      "rwp_before": 9.257944394320738,
+      "rwp_after": 9.257944394320738,
+      "accepted": false
+    },
+    {
+      "action": "phase_Bi2O3_P21c",
+      "rwp_before": 9.257944394320738,
+      "rwp_after": 9.257944394320738,
+      "accepted": false
+    },
+    {
+      "action": "phase_Fe2O3_R-3c",
+      "rwp_before": 9.257944394320738,
+      "rwp_after": 9.257944394320738,
+      "accepted": false
+    },
+    {
+      "action": "phase_Nd2O3_A",
+      "rwp_before": 9.257944394320738,
+      "rwp_after": 9.257944394320738,
+      "accepted": false
+    }
+  ],
+  "nd_fraction": 0.1,
+  "use_llm": false,
+  "action_menu": [
+    "hold_negative_uiso",
+    "fix_correlated_params",
+    "extra_cycles",
+    "preferred_orientation",
+    "background_18",
+    "phase_Bi25FeO40_I23",
+    "phase_Bi2Fe4O9_Pbam",
+    "phase_Bi2O3_P21c",
+    "phase_Fe2O3_R-3c",
+    "phase_Nd2O3_A",
+    "phase_NdFeO3_Pnma"
+  ],
+  "rwp_ceiling": null,
+  "fixed_instrument": true,
+  "protocol": "r1",
+  "multistart": [
+    {
+      "size0": 0.1,
+      "mustrain0": 1000.0,
+      "shift0": 0.0,
+      "rwp": 16.819069722056405
+    },
+    {
+      "size0": 0.1,
+      "mustrain0": 1000.0,
+      "shift0": -100.0,
+      "rwp": 16.818912785710733
+    },
+    {
+      "size0": 0.1,
+      "mustrain0": 4000.0,
+      "shift0": 0.0,
+      "rwp": 16.819211730503238
+    },
+    {
+      "size0": 0.1,
+      "mustrain0": 4000.0,
+      "shift0": -100.0,
+      "rwp": 16.81897303497152
+    },
+    {
+      "size0": 0.3,
+      "mustrain0": 1000.0,
+      "shift0": 0.0,
+      "rwp": 16.81896804364891
+    },
+    {
+      "size0": 0.3,
+      "mustrain0": 1000.0,
+      "shift0": -100.0,
+      "rwp": 16.818889563314027
+    },
+    {
+      "size0": 0.3,
+      "mustrain0": 4000.0,
+      "shift0": 0.0,
+      "rwp": 17.327905553975693
+    },
+    {
+      "size0": 0.3,
+      "mustrain0": 4000.0,
+      "shift0": -100.0,
+      "rwp": 16.819186921951488
+    },
+    {
+      "size0": 1.0,
+      "mustrain0": 1000.0,
+      "shift0": 0.0,
+      "rwp": 17.424374742607505
+    },
+    {
+      "size0": 1.0,
+      "mustrain0": 1000.0,
+      "shift0": -100.0,
+      "rwp": 17.328314844912228
+    },
+    {
+      "size0": 1.0,
+      "mustrain0": 4000.0,
+      "shift0": 0.0,
+      "rwp": 17.32800109257
+    },
+    {
+      "size0": 1.0,
+      "mustrain0": 4000.0,
+      "shift0": -100.0,
+      "rwp": 17.32794164596583
+    }
+  ],
+  "final_rwp": 9.257944394320738,
+  "final_gof": 1.7591699108654442,
+  "verdict_ok": false,
+  "meets_ceiling": false,
+  "metrics": {
+    "wRmin": 5.269708157842733,
+    "DW": 0.6719760071909713,
+    "RF2": 6.235993654839552,
+    "cell": {
+      "length_a": 5.573602308932899,
+      "length_b": 5.573602308932898,
+      "length_c": 13.8074285090652,
+      "angle_alpha": 90.0,
+      "angle_beta": 90.0,
+      "angle_gamma": 120.00000000000001,
+      "volume": 371.46285286027774
+    },
+    "shift_um": -38.3945947089266,
+    "gonio_radius_mm": 185.0,
+    "size_um": 0.2353239531077562,
+    "mustrain_ue": 4896.271888551368,
+    "md": 1.01789346937899,
+    "atoms": {
+      "Bi1": {
+        "uiso": 0.005735890871682036,
+        "occ": 0.9
+      },
+      "Fe1": {
+        "uiso": -0.0026505211544950048,
+        "occ": 1.0
+      },
+      "O1": {
+        "uiso": -0.0017606797748555955,
+        "occ": 1.0
+      },
+      "Nd1": {
+        "uiso": 0.005735890871682036,
+        "occ": 0.1
+      }
+    },
+    "svd0": 0,
+    "converged": true,
+    "esd": {
+      "0:0:Mustrain;i": [
+        4896.271888551368,
+        66.55378152230458
+      ],
+      "0:0:Size;i": [
+        0.2353239531077562,
+        0.00846427547115321
+      ],
+      ":0:Shift": [
+        -38.3945947089266,
+        0.7333617370852444
+      ]
+    }
+  },
+  "failing_checks": [
+    {
+      "check": "uiso_Fe1",
+      "status": "FAIL",
+      "detail": "Uiso=-0.00265 A^2 (range 0.0001-0.05)"
+    },
+    {
+      "check": "uiso_O1",
+      "status": "FAIL",
+      "detail": "Uiso=-0.00176 A^2 (range 0.0001-0.05)"
+    }
+  ],
+  "finished": "2026-11-24T10:38:04.700548"
+}

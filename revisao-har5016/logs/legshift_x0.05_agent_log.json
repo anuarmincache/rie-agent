@@ -1,0 +1,118 @@
+{
+  "label": "legshift_x0.05",
+  "started": "2026-11-24T10:49:27.910448",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 36.976615555585816,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 13.53686689882625,
+      "accepted": true
+    },
+    {
+      "stage": "displacement",
+      "Rwp": 13.315620252068527,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 13.158133698455677,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 13.062210364857274,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 11.534811656648584,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 11.525511948046347,
+      "accepted": true
+    },
+    {
+      "stage": "uniaxial_size",
+      "Rwp": 9.881170267143805,
+      "accepted": true
+    }
+  ],
+  "remediations": [],
+  "nd_fraction": 0.05,
+  "use_llm": false,
+  "action_menu": [
+    "nominal_nd",
+    "hold_negative_uiso",
+    "fix_correlated_params",
+    "extra_cycles",
+    "preferred_orientation",
+    "background_18",
+    "uniaxial_size",
+    "phase_Bi25FeO40_I23",
+    "phase_Bi2Fe4O9_Pbam",
+    "phase_Bi2O3_P21c",
+    "phase_Fe2O3_R-3c",
+    "phase_Nd2O3_A",
+    "phase_NdFeO3_Pnma"
+  ],
+  "rwp_ceiling": null,
+  "fixed_instrument": true,
+  "protocol": "legacy",
+  "final_rwp": 9.881170267143805,
+  "final_gof": 1.7406907093102613,
+  "verdict_ok": true,
+  "meets_ceiling": true,
+  "metrics": {
+    "wRmin": 5.683925988032601,
+    "DW": 0.7138977942252134,
+    "RF2": 3.6035011565323773,
+    "cell": {
+      "length_a": 5.577416737384976,
+      "length_b": 5.577416737384976,
+      "length_c": 13.838520995604153,
+      "angle_alpha": 90.0,
+      "angle_beta": 90.0,
+      "angle_gamma": 119.99999999999999,
+      "volume": 372.8090959764283
+    },
+    "shift_um": 16.36651963254028,
+    "gonio_radius_mm": 200.0,
+    "size_um": 10.0,
+    "mustrain_ue": 1000.0,
+    "md": 0.958410327193298,
+    "atoms": {
+      "Bi1": {
+        "uiso": 0.01119886684863166,
+        "occ": 1.0
+      },
+      "Fe1": {
+        "uiso": 0.0036492461982083673,
+        "occ": 1.0
+      },
+      "O1": {
+        "uiso": 0.00468774352001718,
+        "occ": 1.0
+      }
+    },
+    "svd0": 0,
+    "converged": true,
+    "esd": {
+      "0:0:Size;a": [
+        0.16177592572227112,
+        0.002054285595328245
+      ],
+      ":0:Shift": [
+        16.36651963254028,
+        0.607825043175109
+      ]
+    }
+  },
+  "failing_checks": [],
+  "finished": "2026-11-24T10:49:38.697214"
+}

@@ -1,0 +1,135 @@
+{
+  "label": "legshift_x0.10",
+  "started": "2026-11-24T10:41:30.655652",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 38.98129246934689,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 19.758851093984227,
+      "accepted": true
+    },
+    {
+      "stage": "displacement",
+      "Rwp": 18.792992520246163,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 18.4227982143347,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 18.189893019562856,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 11.931836559733789,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 11.877284611658025,
+      "accepted": true
+    },
+    {
+      "stage": "uniaxial_size",
+      "Rwp": 9.499517540383476,
+      "accepted": true
+    }
+  ],
+  "remediations": [
+    {
+      "action": "nominal_nd",
+      "rwp_before": 9.499517540383476,
+      "rwp_after": 9.319706738035267,
+      "accepted": true
+    },
+    {
+      "action": "hold_negative_uiso",
+      "rwp_before": 9.319706738035267,
+      "rwp_after": 9.339198312727435,
+      "accepted": true
+    }
+  ],
+  "nd_fraction": 0.1,
+  "use_llm": false,
+  "action_menu": [
+    "nominal_nd",
+    "hold_negative_uiso",
+    "fix_correlated_params",
+    "extra_cycles",
+    "preferred_orientation",
+    "background_18",
+    "uniaxial_size",
+    "phase_Bi25FeO40_I23",
+    "phase_Bi2Fe4O9_Pbam",
+    "phase_Bi2O3_P21c",
+    "phase_Fe2O3_R-3c",
+    "phase_Nd2O3_A",
+    "phase_NdFeO3_Pnma"
+  ],
+  "rwp_ceiling": null,
+  "fixed_instrument": true,
+  "protocol": "legacy",
+  "final_rwp": 9.339198312727435,
+  "final_gof": 1.7744613152320587,
+  "verdict_ok": true,
+  "meets_ceiling": true,
+  "metrics": {
+    "wRmin": 5.269708157842733,
+    "DW": 0.6631826389464853,
+    "RF2": 5.786002946511635,
+    "cell": {
+      "length_a": 5.574383750383978,
+      "length_b": 5.574383750383978,
+      "length_c": 13.808474616046126,
+      "angle_alpha": 90.0,
+      "angle_beta": 90.0,
+      "angle_gamma": 119.99999999999999,
+      "volume": 371.5951727627233
+    },
+    "shift_um": 56.6477076905483,
+    "gonio_radius_mm": 200.0,
+    "size_um": 10.0,
+    "mustrain_ue": 1000.0,
+    "md": 0.9553826395353644,
+    "atoms": {
+      "Bi1": {
+        "uiso": 0.007917124901629073,
+        "occ": 0.9
+      },
+      "Fe1": {
+        "uiso": 0.0010210140738547298,
+        "occ": 1.0
+      },
+      "O1": {
+        "uiso": 0.005,
+        "occ": 1.0
+      },
+      "Nd1": {
+        "uiso": 0.007917124901629073,
+        "occ": 0.1
+      }
+    },
+    "svd0": 0,
+    "converged": true,
+    "esd": {
+      "0:0:Size;a": [
+        0.10657793107705892,
+        0.0012131929906597889
+      ],
+      ":0:Shift": [
+        56.6477076905483,
+        0.7438738553747142
+      ]
+    }
+  },
+  "failing_checks": [],
+  "finished": "2026-11-24T10:41:45.178729"
+}

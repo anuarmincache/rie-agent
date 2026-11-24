@@ -1,0 +1,185 @@
+{
+  "label": "leg_x0.20",
+  "started": "2026-11-24T10:42:39.365110",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 55.605528353165646,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 24.957062146052202,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 24.48532225030707,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 24.311738875098687,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 22.0258721607546,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 22.021900129707937,
+      "accepted": true
+    },
+    {
+      "stage": "uniaxial_size",
+      "Rwp": 21.840565192305704,
+      "accepted": true
+    }
+  ],
+  "remediations": [
+    {
+      "action": "nominal_nd",
+      "rwp_before": 21.840565192305704,
+      "rwp_after": 21.638001739448406,
+      "accepted": true
+    },
+    {
+      "action": "hold_negative_uiso",
+      "rwp_before": 21.638001739448406,
+      "rwp_after": 21.638001739448406,
+      "accepted": false
+    },
+    {
+      "action": "fix_correlated_params",
+      "rwp_before": 21.638001739448406,
+      "rwp_after": 21.638001739448406,
+      "accepted": false
+    },
+    {
+      "action": "extra_cycles",
+      "rwp_before": 21.638001739448406,
+      "rwp_after": 21.638001739448406,
+      "accepted": false
+    },
+    {
+      "action": "preferred_orientation",
+      "rwp_before": 21.638001739448406,
+      "rwp_after": 21.638001739448406,
+      "accepted": false
+    },
+    {
+      "action": "background_18",
+      "rwp_before": 21.638001739448406,
+      "rwp_after": 21.638001739448406,
+      "accepted": false
+    },
+    {
+      "action": "uniaxial_size",
+      "rwp_before": 21.638001739448406,
+      "rwp_after": 21.638001739448406,
+      "accepted": false
+    },
+    {
+      "action": "phase_Bi25FeO40_I23",
+      "rwp_before": 21.638001739448406,
+      "rwp_after": 21.638001739448406,
+      "accepted": false
+    },
+    {
+      "action": "phase_Bi2Fe4O9_Pbam",
+      "rwp_before": 21.638001739448406,
+      "rwp_after": 21.638001739448406,
+      "accepted": false
+    },
+    {
+      "action": "phase_Bi2O3_P21c",
+      "rwp_before": 21.638001739448406,
+      "rwp_after": 21.638001739448406,
+      "accepted": false
+    }
+  ],
+  "nd_fraction": 0.2,
+  "use_llm": false,
+  "action_menu": [
+    "nominal_nd",
+    "hold_negative_uiso",
+    "fix_correlated_params",
+    "extra_cycles",
+    "preferred_orientation",
+    "background_18",
+    "uniaxial_size",
+    "phase_Bi25FeO40_I23",
+    "phase_Bi2Fe4O9_Pbam",
+    "phase_Bi2O3_P21c",
+    "phase_Fe2O3_R-3c",
+    "phase_Nd2O3_A",
+    "phase_NdFeO3_Pnma"
+  ],
+  "rwp_ceiling": null,
+  "fixed_instrument": true,
+  "protocol": "legacy",
+  "final_rwp": 21.638001739448406,
+  "final_gof": 4.174302587251239,
+  "verdict_ok": false,
+  "meets_ceiling": false,
+  "metrics": {
+    "wRmin": 5.190111963970763,
+    "DW": 0.13861945832699618,
+    "RF2": 14.890209396276797,
+    "cell": {
+      "length_a": 5.56473927750032,
+      "length_b": 5.56473927750032,
+      "length_c": 13.778684384061417,
+      "angle_alpha": 90.0,
+      "angle_beta": 90.0,
+      "angle_gamma": 120.00000000000001,
+      "volume": 369.5115574055363
+    },
+    "shift_um": 0.0,
+    "gonio_radius_mm": 200.0,
+    "size_um": 10.0,
+    "mustrain_ue": 1000.0,
+    "md": 0.9930111298324567,
+    "atoms": {
+      "Bi1": {
+        "uiso": 0.012209354468277294,
+        "occ": 0.8
+      },
+      "Fe1": {
+        "uiso": 0.0072002670843405725,
+        "occ": 1.0
+      },
+      "O1": {
+        "uiso": -0.02447260725518392,
+        "occ": 1.0
+      },
+      "Nd1": {
+        "uiso": 0.012209354468277294,
+        "occ": 0.2
+      }
+    },
+    "svd0": 0,
+    "converged": true,
+    "esd": {
+      "0:0:Size;a": [
+        527723231752.6449,
+        0.0
+      ]
+    }
+  },
+  "failing_checks": [
+    {
+      "check": "gof_reasonable",
+      "status": "FAIL",
+      "detail": "GOF=4.17 (target <= 3.0)"
+    },
+    {
+      "check": "uiso_O1",
+      "status": "FAIL",
+      "detail": "Uiso=-0.02447 A^2 (range 0.0001-0.05)"
+    }
+  ],
+  "finished": "2026-11-24T10:43:10.574354"
+}

@@ -1,0 +1,198 @@
+{
+  "label": "r1_x0.025",
+  "started": "2026-11-24T10:35:05.457530",
+  "base_stages": [
+    {
+      "stage": "scale_background",
+      "Rwp": 60.02072852000252,
+      "accepted": true
+    },
+    {
+      "stage": "lattice",
+      "Rwp": 48.23605497499656,
+      "accepted": true
+    },
+    {
+      "stage": "MULTISTART",
+      "Rwp": 12.013919493170405,
+      "accepted": true
+    },
+    {
+      "stage": "atomic_positions",
+      "Rwp": 11.902584126975519,
+      "accepted": true
+    },
+    {
+      "stage": "thermal",
+      "Rwp": 11.790513327890032,
+      "accepted": true
+    },
+    {
+      "stage": "background_18",
+      "Rwp": 10.42586724294785,
+      "accepted": true
+    },
+    {
+      "stage": "preferred_orientation",
+      "Rwp": 10.259278627565056,
+      "accepted": true
+    },
+    {
+      "stage": "size_mustrain",
+      "Rwp": 10.259151085724252,
+      "accepted": true
+    }
+  ],
+  "remediations": [],
+  "nd_fraction": 0.025,
+  "use_llm": false,
+  "action_menu": [
+    "hold_negative_uiso",
+    "fix_correlated_params",
+    "extra_cycles",
+    "preferred_orientation",
+    "background_18",
+    "phase_Bi25FeO40_I23",
+    "phase_Bi2Fe4O9_Pbam",
+    "phase_Bi2O3_P21c",
+    "phase_Fe2O3_R-3c",
+    "phase_Nd2O3_A",
+    "phase_NdFeO3_Pnma"
+  ],
+  "rwp_ceiling": null,
+  "fixed_instrument": true,
+  "protocol": "r1",
+  "multistart": [
+    {
+      "size0": 0.1,
+      "mustrain0": 1000.0,
+      "shift0": 0.0,
+      "rwp": 12.015006375025388
+    },
+    {
+      "size0": 0.1,
+      "mustrain0": 1000.0,
+      "shift0": -100.0,
+      "rwp": 12.014506018010993
+    },
+    {
+      "size0": 0.1,
+      "mustrain0": 4000.0,
+      "shift0": 0.0,
+      "rwp": 12.013919493170405
+    },
+    {
+      "size0": 0.1,
+      "mustrain0": 4000.0,
+      "shift0": -100.0,
+      "rwp": 12.015567866564748
+    },
+    {
+      "size0": 0.3,
+      "mustrain0": 1000.0,
+      "shift0": 0.0,
+      "rwp": 12.014474183167252
+    },
+    {
+      "size0": 0.3,
+      "mustrain0": 1000.0,
+      "shift0": -100.0,
+      "rwp": 12.014102123799386
+    },
+    {
+      "size0": 0.3,
+      "mustrain0": 4000.0,
+      "shift0": 0.0,
+      "rwp": 13.733802542817966
+    },
+    {
+      "size0": 0.3,
+      "mustrain0": 4000.0,
+      "shift0": -100.0,
+      "rwp": 12.014098191721917
+    },
+    {
+      "size0": 1.0,
+      "mustrain0": 1000.0,
+      "shift0": 0.0,
+      "rwp": 13.733562702001874
+    },
+    {
+      "size0": 1.0,
+      "mustrain0": 1000.0,
+      "shift0": -100.0,
+      "rwp": 13.734008888292177
+    },
+    {
+      "size0": 1.0,
+      "mustrain0": 4000.0,
+      "shift0": 0.0,
+      "rwp": 13.733966744778247
+    },
+    {
+      "size0": 1.0,
+      "mustrain0": 4000.0,
+      "shift0": -100.0,
+      "rwp": 13.734421393500828
+    }
+  ],
+  "final_rwp": 10.259151085724252,
+  "final_gof": 1.8489143201158043,
+  "verdict_ok": true,
+  "meets_ceiling": true,
+  "metrics": {
+    "wRmin": 5.556155910720367,
+    "DW": 0.6166033448404326,
+    "RF2": 3.9082761922382163,
+    "cell": {
+      "length_a": 5.577702815807067,
+      "length_b": 5.577702815807068,
+      "length_c": 13.852664176445739,
+      "angle_alpha": 90.0,
+      "angle_beta": 90.0,
+      "angle_gamma": 120.00000000000001,
+      "volume": 373.228397119605
+    },
+    "shift_um": -92.49008769233437,
+    "gonio_radius_mm": 185.0,
+    "size_um": 0.16235593724875189,
+    "mustrain_ue": 2658.9996832585,
+    "md": 0.9762743378705786,
+    "atoms": {
+      "Bi1": {
+        "uiso": 0.00844969038686461,
+        "occ": 0.975
+      },
+      "Fe1": {
+        "uiso": 0.0033532085379823083,
+        "occ": 1.0
+      },
+      "O1": {
+        "uiso": 0.004557360514834958,
+        "occ": 1.0
+      },
+      "Nd1": {
+        "uiso": 0.00844969038686461,
+        "occ": 0.025
+      }
+    },
+    "svd0": 0,
+    "converged": true,
+    "esd": {
+      "0:0:Mustrain;i": [
+        2658.9996832585,
+        38.861073798781284
+      ],
+      "0:0:Size;i": [
+        0.16235593724875189,
+        0.002599343788631635
+      ],
+      ":0:Shift": [
+        -92.49008769233437,
+        0.5264095175333767
+      ]
+    }
+  },
+  "failing_checks": [],
+  "finished": "2026-11-24T10:35:50.267160"
+}

@@ -1,0 +1,585 @@
+{
+ "x0.025": {
+  "GOF_TARGET=2.0": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=2.5": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=3.0": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=4.0": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=5.0": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.0": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.0001": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.001": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.002": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MAX=0.02": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MAX=0.05": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MAX=0.1": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.8": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.9": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.95": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.99": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=0.1": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=0.2": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=0.5": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=1.0": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=2.0": {
+   "ok": true,
+   "fail": []
+  }
+ },
+ "x0.05": {
+  "GOF_TARGET=2.0": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=2.5": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=3.0": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=4.0": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=5.0": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.0": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.0001": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.001": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.002": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MAX=0.02": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MAX=0.05": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MAX=0.1": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.8": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.9": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.95": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.99": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=0.1": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=0.2": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=0.5": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=1.0": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=2.0": {
+   "ok": true,
+   "fail": []
+  }
+ },
+ "x0.10": {
+  "GOF_TARGET=2.0": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable"
+   ]
+  },
+  "GOF_TARGET=2.5": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=3.0": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=4.0": {
+   "ok": true,
+   "fail": []
+  },
+  "GOF_TARGET=5.0": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.0": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.0001": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.001": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MIN=0.002": {
+   "ok": false,
+   "fail": [
+    "uiso_Fe1"
+   ]
+  },
+  "UISO_MAX=0.02": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MAX=0.05": {
+   "ok": true,
+   "fail": []
+  },
+  "UISO_MAX=0.1": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.8": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.9": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.95": {
+   "ok": true,
+   "fail": []
+  },
+  "CORR_WARN=0.99": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=0.1": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=0.2": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=0.5": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=1.0": {
+   "ok": true,
+   "fail": []
+  },
+  "PROFILE_SHIFT_LIMIT=2.0": {
+   "ok": true,
+   "fail": []
+  }
+ },
+ "x0.15": {
+  "GOF_TARGET=2.0": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "GOF_TARGET=2.5": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "GOF_TARGET=3.0": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "GOF_TARGET=4.0": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "GOF_TARGET=5.0": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MIN=0.0": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MIN=0.0001": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MIN=0.001": {
+   "ok": false,
+   "fail": [
+    "uiso_Fe1",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MIN=0.002": {
+   "ok": false,
+   "fail": [
+    "uiso_Fe1",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MAX=0.02": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MAX=0.05": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MAX=0.1": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "CORR_WARN=0.8": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "CORR_WARN=0.9": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "CORR_WARN=0.95": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "CORR_WARN=0.99": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "PROFILE_SHIFT_LIMIT=0.1": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "PROFILE_SHIFT_LIMIT=0.2": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "PROFILE_SHIFT_LIMIT=0.5": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "PROFILE_SHIFT_LIMIT=1.0": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "PROFILE_SHIFT_LIMIT=2.0": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  }
+ },
+ "x0.20": {
+  "GOF_TARGET=2.0": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "GOF_TARGET=2.5": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "GOF_TARGET=3.0": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "GOF_TARGET=4.0": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "GOF_TARGET=5.0": {
+   "ok": false,
+   "fail": [
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MIN=0.0": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MIN=0.0001": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MIN=0.001": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MIN=0.002": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MAX=0.02": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MAX=0.05": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "UISO_MAX=0.1": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "CORR_WARN=0.8": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "CORR_WARN=0.9": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "CORR_WARN=0.95": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "CORR_WARN=0.99": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "PROFILE_SHIFT_LIMIT=0.1": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "PROFILE_SHIFT_LIMIT=0.2": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "PROFILE_SHIFT_LIMIT=0.5": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "PROFILE_SHIFT_LIMIT=1.0": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  },
+  "PROFILE_SHIFT_LIMIT=2.0": {
+   "ok": false,
+   "fail": [
+    "gof_reasonable",
+    "uiso_O1",
+    "param_correlations"
+   ]
+  }
+ }
+}
